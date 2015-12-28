@@ -7,7 +7,8 @@
 var config = {
     HOST: 'http://localhost',
     PORT: getEnv('PORT') || 3000,
-    MONGODBURL: 'mongodb://JelleVDB:abc123@ds049624.mongolab.com:49624/geofeelings'
+    //MONGODBURL: 'mongodb://JelleVDB:abc123@ds049624.mongolab.com:49624/geofeelings'
+    MONGODBURL : process.env.MONGO_URI || 'mongodb://localhost/Geofeelings'
 };
 
 function getEnv(variable) {

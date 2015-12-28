@@ -6,7 +6,7 @@ var mongoose = require('mognoose');
 
 var userSchema = mongoose.Schema({
     username: {type: String, required: true},
-    email: {type: String, required: true},
+    email: {type: String, required: true, match: /.+\@.+\..+/},
     password: {type: String, required: true},
     age: {type: Number, required: true},
     gender: {type: String, required: true},
