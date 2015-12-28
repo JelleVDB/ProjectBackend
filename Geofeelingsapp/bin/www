@@ -19,6 +19,13 @@ app.set('port', config.PORT);
  * Create HTTP server.
  */
 
+var DBService = require("../data/connectDBService.js");
+var connectDB = DBService(config.MONGODBURL, require('mongoose'));
+
+/**
+ * Create HTTP server.
+ */
+
 var server = http.createServer(app);
 
 /**
