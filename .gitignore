@@ -1,3 +1,5 @@
 Geofeelingsapp/node_modules/
-Geofeelingsapp/.idea/
-Geofeelingsapp/.idea/Workspace.xml
+.idea/
+.idea/Workspace.xml
+Geofeelingsapp/.idea/workspace.xml
+Geofeelingsapp/.idea/misc.xml
