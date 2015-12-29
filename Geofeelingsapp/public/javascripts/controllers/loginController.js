@@ -23,7 +23,7 @@
             };
 
             //posts data to server
-            $http.post('/account/register', userData)
+            $http.post('/register', userData)
                 .success(function(data){
                     //clear form
                     //TODO change code depending on new form

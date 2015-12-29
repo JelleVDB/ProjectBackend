@@ -18,6 +18,7 @@
     "bcrypt": "latest",
     "mongoose": "latest",
     "path": "latest",
-    "passport": "latest"
+    "passport": "latest",
+    "passport-local": "latest"
   }
 }
