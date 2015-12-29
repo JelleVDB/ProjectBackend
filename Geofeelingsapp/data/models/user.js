@@ -2,7 +2,7 @@
  * Created by jelle on 28/12/2015.
  */
 
-var mongoose = require('mognoose');
+var mongoose = require('mongoose');
 var userSchema = require("../schemas/user");
 var bcrypt = require('bcrypt');
 

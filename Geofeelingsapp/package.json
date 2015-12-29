@@ -17,6 +17,7 @@
     "bootstrap": "~3.3.6",
     "bcrypt": "latest",
     "mongoose": "latest",
-    "path": "latest"
+    "path": "latest",
+    "passport": "latest"
   }
 }
