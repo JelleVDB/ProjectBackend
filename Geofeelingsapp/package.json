@@ -19,6 +19,7 @@
     "mongoose": "latest",
     "path": "latest",
     "passport": "latest",
-    "passport-local": "latest"
+    "passport-local": "latest",
+    "express-session": "latest"
   }
 }

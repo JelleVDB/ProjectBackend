@@ -5,9 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-
-var routes = require('./routes/index');
-var authentication = require('./routes/authentication');
+var session = require('express-session');
+var flash = require('connect-flash');
 
 var app = express();
 
@@ -29,8 +28,16 @@ app.use(require('node-sass-middleware')({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/', authentication);
+//passport requirements
+require('./config/passport');
+
+app.use(session({secret: 'geolocatiesamenjelle'}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+require('./routes/authentication.js')(app, passport);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

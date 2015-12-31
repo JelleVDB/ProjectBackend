@@ -3,32 +3,43 @@
  */
 
 var express = require('express');
-var router = express.Router();
 var path = require('path');
 
-var User = require('../data/models/user.js');
-var UsersRepo = require('../data/models/userrepo.js');
+module.exports = function(app, passport){
 
-/* Register user */
-router.get('/register', function(req, res){
-    res.sendFile(path.join(__dirname, '../public/account/register.html'));
-});
+    //TODO moet homepage toegankelijk zijn zonder inloggen?
+    //TODO index pagina niet in public (anders werkt login check niet)
+    app.get('/', isLoggedIn, function(req, res){
+        res.sendFile(path.join(__dirname, '../public/account/'));
+    });
 
-router.post('/register', function(req, res, next){
-    //TODO error check
-    UsersRepo.createUser(req.body, function(next){
-        if(next.errors && next.name === 'ValidationError'){
-            //TODO show validation error
-            res.sendFile(path.join(__dirname, '../public/account/register.html'));
-        }else if(next.errors){
-            next(new Error(next.message));
-        }else{
-            //TODO redirect naar login (of autologin) naar homepage
-            res.redirect('/');
-        }
+    /* Register user */
+    app.get('/register', function(req, res){
+        res.sendFile(path.join(__dirname, '../public/account/register.html'));
+    });
+
+    app.post('/register', function(req, res){
+        passport.authenticate('signup', function(err, user){
+            if(err){
+                return res.json(err);
+            }
+
+            if(user.error){
+                return res.json({error: user.error});
+            }
+            //TODO autologin na registreren
+
+        })(req, res);
+    });
+};
 
 
-    })
-});
-
-module.exports = router;
+// User logged in
+function isLoggedIn(req, res, next) {
+    if (!req.isAuthenticated()) {
+        //TODO verander register naar login
+        return res.redirect('/register');
+    } else {
+        next();
+    }
+}

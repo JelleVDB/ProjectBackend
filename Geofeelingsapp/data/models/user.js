@@ -17,7 +17,7 @@ userSchema.methods.generateHash = function(password, cb){
     });
 };
 
-userSchema.methods.verifyPassword = function(password, cb){
+userSchema.methods.validPassword = function(password, cb){
     bcrypt.compare(password, this.password, function(err, isMatch){
        if(err){
            return cb(err);
