@@ -19,13 +19,12 @@ module.exports = function(passport){
         });
     });
 
-    //signup
-    passport.use('signup', new LocalStrategy({
+    //register
+    passport.use('register', new LocalStrategy({
         usernameField: 'username',
         passwordField: 'password',
         passReqToCallback: true
     }, function(req, username, password, done) {
-        console.log(username);
         process.nextTick(function () {
             if(!req.user){
                 User.findOne({'username': username}, function(err, user){
@@ -70,6 +69,7 @@ module.exports = function(passport){
         passwordField: 'password',
         passReqToCallback: true
     }, function(req, username, password, done){
+        console.log(username);
         process.nextTick(function(){
            User.findOne({'username': username}, function(err, user){
               if(err){
@@ -77,6 +77,7 @@ module.exports = function(passport){
               }
 
               if(!user){
+                  console.log("No such user found!");
                   return done(null, {error: 'Oops! No user found.'});
               }else{
                   user.validPassword(password, function(err, isMatch){
@@ -85,8 +86,10 @@ module.exports = function(passport){
                      }
 
                      if(isMatch){
+                         console.log(user.username + " logged in!");
                          return done(null, user);
                      }else{
+                         console.log(user.username + " wrong password!");
                          return done(null, {error: 'Oops! Wrong password.'});
                      }
                   });

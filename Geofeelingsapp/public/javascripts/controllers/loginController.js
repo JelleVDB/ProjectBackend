@@ -25,6 +25,8 @@
             //posts data to server
             $http.post('/register', userData)
                 .success(function(data){
+                    $scope.error = data.error;
+
                     //clear form
                     //TODO change code depending on new form
                     $scope.registerData.username = "";
@@ -33,6 +35,26 @@
                     $scope.registerData.age = "";
                     $scope.registerData.gender = "";
                     $scope.registerData.chat = "";
+                })
+                .error(function(data){
+                    console.log('Error: ' + data);
+                });
+        };
+
+        $scope.login = function(){
+
+            $scope.loginData = {};
+
+            //Grab data from login form
+            var loginData = {
+                username: $scope.loginData.username,
+                password: $scope.loginData.password
+            };
+
+            //post data to server
+            $http.post('/login', loginData)
+                .success(function(data){
+                    $scope.error = data.error;
                 })
                 .error(function(data){
                     console.log('Error: ' + data);

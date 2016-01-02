@@ -29,7 +29,7 @@ app.use(require('node-sass-middleware')({
 app.use(express.static(path.join(__dirname, 'public')));
 
 //passport requirements
-require('./config/passport');
+require('./config/passport')(passport);
 
 app.use(session({secret: 'geolocatiesamenjelle'}));
 app.use(passport.initialize());

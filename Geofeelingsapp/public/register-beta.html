@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Register</title>
     <!-- Script references -->
-    <script src="/javascripts/vendor/angular/angular.js"></script>
-    <script src="../javascripts/vendor/angular/angular-route.js"></script>
-    <script src="../javascripts/app.js"></script>
-    <script src="../javascripts/controllers/loginController.js"></script>
+    <script src="javascripts/vendor/angular/angular.js"></script>
+    <script src="javascripts/vendor/angular/angular-route.js"></script>
+    <script src="javascripts/app.js"></script>
+    <script src="javascripts/controllers/loginController.js"></script>
 </head>
 <body ng-controller="loginController">
     <form name="registerForm" novalidate>
@@ -32,6 +32,6 @@
         <button type="submit" ng-disabled="registerForm.$invalid" ng-click="register()" >Create user</button>
     </form>
     <hr>
-    <p>Already have an account? <a href="#/login">Login</a></p>
+    <p>Already have an account? <a href="/login">Login</a></p>
 </body>
 </html>
