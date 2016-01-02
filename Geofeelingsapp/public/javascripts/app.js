@@ -15,6 +15,8 @@
             templateUrl: "../register-beta.html"
         }).when("/", {
             templateUrl: "../map.html"
+        }).when("/account", {
+            templateUrl: "../account.html"
         }).otherwise({
             redirectTo: "/login"
         });

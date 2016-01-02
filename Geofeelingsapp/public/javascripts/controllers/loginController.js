@@ -17,10 +17,8 @@
                 username: $scope.registerData.username,
                 password: $scope.registerData.password,
                 email: $scope.registerData.email,
-                //TODO validatie on only numbers
                 age: Number($scope.registerData.age),
                 gender: $scope.registerData.gender
-                //TODO convert chat option to bool
             };
 
             //posts data to server

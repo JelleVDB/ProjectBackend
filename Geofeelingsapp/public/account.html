@@ -35,28 +35,47 @@
                     Aliquam in felis sit amet augue.</p>
                 </div>
                 <div class="col-md-4" id="frontLogin">
-                    <h2>Login</h2>
-
-                    <!-- item list -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><a href="">Item heading</a></div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-                        Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-                        dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-                        Aliquam in felis sit amet augue.</p>
+                    <div ng-show="error" class="alert alert-danger">{{ error }}</div>
+                    <form name="loginForm" novalidate>
+                        <div class="form-group">
+                            <label for="username" style="padding-top: 15px">Gebruikersnaam</label>
+                            <input type="text" ng-model="loginData.username" required class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Wachtwoord</label>
+                            <input type="password" ng-model="loginData.password" required class="form-control" />
+                        </div>
+                        <button type="submit" ng-disabled="loginForm.$invalid" ng-click="login()" class="btn btn-primary" >Inloggen</button>
+                    </form>
                 </div>
                 <div class="col-md-4" id="frontRegister">
-                    <h2>Registreren</h2>
-
-                    <!-- item list -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><a href="">Item heading</a></div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-                        Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-                        dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-                        Aliquam in felis sit amet augue.</p>
+                    <h4>Nieuw op geofeelings? Registreer nu</h4>
+                    <hr>
+                    <div ng-show="error" class="alert alert-danger">{{ error }}</div>
+                    <form name="registerForm" novalidate>
+                        <div class="form-group">
+                            <label for="username">Gebruikersnaam</label>
+                            <input type="text" id="username" ng-model="registerData.username" class="form-control" placeholder="Gebruikersnaam" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Wachtwoord</label>
+                            <input type="password" id="password" ng-model="registerData.password" class="form-control" placeholder="Wachtwoord" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="text" id="email" ng-model="registerData.email" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="E-mail adres" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Leeftijd</label>
+                            <input type="number" id="age" ng-model="registerData.age" class="form-control" min="0" required />
+                        </div>
+                        <div class="form-group">
+                        <label style="display: block;">Geslacht</label>
+                            <input type="radio" name="gender" ng-model="registerData.gender"  required value="M" />Man
+                            <input type="radio" name="gender" ng-model="registerData.gender" required value="V" />Vrouw
+                        </div>
+                        <button type="submit" ng-disabled="registerForm.$invalid" ng-click="register()" class="btn btn-warning" >Registreren op Geofeelings</button>
+                    </form>
                 </div>
 
             </div>
