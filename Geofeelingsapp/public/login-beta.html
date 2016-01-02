@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="geofeelingsApp">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <script src="javascripts/vendor/angular/angular.js"></script>
-    <script src="javascripts/vendor/angular/angular-route.js"></script>
-    <script src="javascripts/app.js"></script>
-    <script src="javascripts/controllers/loginController.js"></script>
-</head>
-<body ng-controller="loginController">
-<form name="loginForm" novalidate>
-    <label for="username">Username</label>
-    <input type="text" id="username" ng-model="loginData.username" required />
-    <br />
-    <label for="password">Password</label>
-    <input type="password" id="password" ng-model="loginData.password" required />
-    <br />
-    <button type="submit" ng-disabled="loginForm.$invalid" ng-click="login()" >Login</button>
-</form>
-<hr>
-<p>No account? <a href="/register">Register</a></p>
-</body>
-</html>
+<div ng-controller="loginController">
+    <div ng-show="error" class="alert alert-danger">{{ error }}</div>
+    <form name="loginForm" novalidate>
+        <label for="username">Username</label>
+        <input type="text" id="username" ng-model="loginData.username" required />
+        <br />
+        <label for="password">Password</label>
+        <input type="password" id="password" ng-model="loginData.password" required />
+        <br />
+        <button type="submit" ng-disabled="loginForm.$invalid" ng-click="login()" >Login</button>
+    </form>
+    <hr>
+    <p>No account? <a href="#/register">Register</a></p>
+</div>

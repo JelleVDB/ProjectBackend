@@ -20,6 +20,7 @@
     "path": "latest",
     "passport": "latest",
     "passport-local": "latest",
-    "express-session": "latest"
+    "express-session": "latest",
+    "connect-flash": "latest"
   }
 }

@@ -5,9 +5,10 @@
 (function () {
     "use strict";
 
-    var loginController = function($scope, $http) {
+    var loginController = function($scope, $http, $location) {
 
         $scope.registerData = {};
+        $scope.loginData = {};
 
         $scope.register = function(){
 
@@ -25,25 +26,14 @@
             //posts data to server
             $http.post('/register', userData)
                 .success(function(data){
-                    $scope.error = data.error;
+                    console.log(data.redirect + " - " + data.error);
 
-                    //clear form
-                    //TODO change code depending on new form
-                    $scope.registerData.username = "";
-                    $scope.registerData.password = "";
-                    $scope.registerData.email = "";
-                    $scope.registerData.age = "";
-                    $scope.registerData.gender = "";
-                    $scope.registerData.chat = "";
-                })
-                .error(function(data){
-                    console.log('Error: ' + data);
+                    $scope.error = data.error;
+                    $location.path(data.redirect);
                 });
         };
 
         $scope.login = function(){
-
-            $scope.loginData = {};
 
             //Grab data from login form
             var loginData = {
@@ -54,13 +44,14 @@
             //post data to server
             $http.post('/login', loginData)
                 .success(function(data){
+                    console.log(data.redirect + " - " + data.error);
+
                     $scope.error = data.error;
-                })
-                .error(function(data){
-                    console.log('Error: ' + data);
+                    $location.path(data.redirect);
                 });
         };
+
     };
 
-    angular.module('geofeelingsApp').controller('loginController', ["$scope", "$http", loginController]);
+    angular.module('geofeelingsApp').controller('loginController', ["$scope", "$http", "$location", loginController]);
 })();
