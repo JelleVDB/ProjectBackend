@@ -8,16 +8,14 @@
             <input type="password" id="password" ng-model="registerData.password" required />
             <br />
             <label for="email">E-mail</label>
-            <input type="text" id="email" ng-model="registerData.email" required />
+            <input type="text" id="email" ng-model="registerData.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
             <br />
             <label for="age">Age</label>
-            <input type="text" id="age" ng-model="registerData.age" required />
+            <input type="number" id="age" ng-model="registerData.age" required />
             <br />
-            <label for="gender">Gender</label>
-            <input type="text" id="gender" ng-model="registerData.gender" required />
-            <br />
-            <label for="chat">Enable Chat?</label>
-            <input type="text" id="chat" ng-model="registerData.chat" required />
+            <label>Gender</label>
+            <input type="radio" name="gender" ng-model="registerData.gender" required value="M" />Man
+            <input type="radio" name="gender" ng-model="registerData.gender" required value="V" />Vrouw
             <br />
             <button type="submit" ng-disabled="registerForm.$invalid" ng-click="register()" >Create user</button>
         </form>
