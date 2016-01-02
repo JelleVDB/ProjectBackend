@@ -23,7 +23,7 @@ module.exports = function(app, passport){
     });
 
     app.post('/register', function(req, res){
-        passport.authenticate('signup', function(err, user){
+        passport.authenticate('register', function(err, user){
             if(err){
                 return res.json(err);
             }
