@@ -32,21 +32,22 @@
     
       <h2>How do you feel here?</h2>
 
-        <form>
+        <form id="mapForm">
             <div class="cc-selector">
-                <input checked="checked" id="happy" type="radio" name="mood" value="1" />
+                <input checked="checked" id="happy" type="radio" name="mood" value="1" ng-model="mapData.mood" />
                 <label class="emoticon-cc happy" for="happy"></label>
-                <input id="unhappy" type="radio" name="mood" value="0" />
+                <input id="unhappy" type="radio" name="mood" value="0" ng-model="mapData.mood" />
                 <label class="emoticon-cc unhappy" for="unhappy"></label>
             </div>
+
+            <div class="form-group">
+                <label for="message">Bericht:</label>
+                <textarea id="message" ng-model="mapData.message" class="form-control" rows="5" />
+            </div>
+            <button type="submit" ng-disabled="registerForm.$invalid" ng-click="addToMap()" class="btn btn-primary" >Toevoegen</button>
         </form>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-        Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-        dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-        Aliquam in felis sit amet augue.</p>
       
       <hr>
-      <!-- /item list -->
 
     </div>
     <div class="col-xs-9"><!--map-canvas will be postioned here--></div>

@@ -5,12 +5,11 @@
 var mongoose = require('mognoose');
 
 var eventSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
     userid: {
-        type: Number
+        type: Schema.Types.ObjectId, ref:'user'
+    },
+    message: {
+        type: String
     },
     mood: {
         type: Boolean,
