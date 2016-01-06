@@ -20,7 +20,7 @@ var eventSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    lang: {
+    lat: {
         type: Number,
         required: true
     },
