@@ -19,7 +19,8 @@ module.exports = function(passport){
         });
     });
 
-    //register
+
+    //Strategy used to register
     passport.use('register', new LocalStrategy({
         usernameField: 'username',
         passwordField: 'password',
@@ -27,32 +28,40 @@ module.exports = function(passport){
     }, function(req, username, password, done) {
         process.nextTick(function () {
             if(!req.user){
+                //Look if the username already exists
                 User.findOne({'username': username}, function(err, user){
+                    //if a error happened during the search, return it
                     if(err){
                         return done(err);
                     }
 
                     if(user){
+                        //If the username is taken, return the error
                         return done(null, {error: 'Username already taken.'});
                     }else{
+                        //If it isn't taken, start making a new user
                         var newUser = new User();
+                        //Hash the given password for security
                         newUser.generateHash(password, function(err, hash){
+                            //if a error happened during hashing, return it
                             if(err){
                                 throw err;
                             }
 
+                            //fill in the rest of the users data
                             newUser.username = username;
                             newUser.password = hash;
                             newUser.email = req.body.email;
                             newUser.age = req.body.age;
                             newUser.gender = req.body.gender;
-                            //TODO chat value
-                            //newUser.chat = req.body.chat;
+
+                            //Save the user to the database
                             newUser.save(function(err){
                                 if(err){
                                     throw err;
                                 }
 
+                                //return the just made user
                                 return done(null, newUser);
                             });
                         });
@@ -63,33 +72,39 @@ module.exports = function(passport){
     }));
 
 
-    //login
+    //Strategy used to login
     passport.use('login', new LocalStrategy({
         usernameField: 'username',
         passwordField: 'password',
         passReqToCallback: true
     }, function(req, username, password, done){
-        console.log(username);
         process.nextTick(function(){
+            //Check if the given username is in the database
            User.findOne({'username': username}, function(err, user){
+               //if a error happened during the search, return it
               if(err){
                   return done(err);
               }
 
+               //If no user is found
               if(!user){
-                  console.log("No such user found!");
+                  //Return the user not found error
                   return done(null, {error: 'Oops! No user found.'});
               }else{
+                  //If the username is found, check if the password matches
                   user.validPassword(password, function(err, isMatch){
+                      //if a error happened during password check, return it
                      if(err){
                          throw err;
                      }
 
+                      //if the password is a match
                      if(isMatch){
-                         console.log(user.username + " logged in!");
+                         //return the logged in user
                          return done(null, user);
                      }else{
-                         console.log(user.username + " wrong password!");
+                         //User exists, but wrong password
+                         //return the wrong password error
                          return done(null, {error: 'Oops! Wrong password.'});
                      }
                   });

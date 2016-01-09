@@ -1,4 +1,4 @@
-<div ng-controller="loginController">
+<div ng-controller="mapController">
 <div class="navbar navbar-custom navbar-fixed-top">
  <div class="navbar-header"><a class="navbar-brand" href="#">Geofeelings</a>
       <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -12,6 +12,7 @@
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#/account">Instellingen</a></li>
         <li><a href="#">Admin</a></li>
+          <li><a href="#" ng-click="logout()">Logout</a></li>
         <li>&nbsp;</li>
       </ul>
       <form class="navbar-form">
@@ -44,7 +45,7 @@
                 <label for="message">Bericht:</label>
                 <textarea id="message" ng-model="mapData.message" class="form-control" rows="5" />
             </div>
-            <button type="submit" ng-disabled="registerForm.$invalid" ng-click="addToMap()" class="btn btn-primary" >Toevoegen</button>
+            <button type="submit" ng-disabled="mapForm.$invalid" ng-click="addToMap()" class="btn btn-primary" >Toevoegen</button>
         </form>
       
       <hr>

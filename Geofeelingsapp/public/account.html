@@ -35,7 +35,7 @@
                     Aliquam in felis sit amet augue.</p>
                 </div>
                 <div class="col-md-4" id="frontLogin">
-                    <div ng-show="error" class="alert alert-danger">{{ error }}</div>
+                    <div ng-show="loginerror" class="alert alert-danger">{{ loginerror }}</div>
                     <form name="loginForm" novalidate>
                         <div class="form-group">
                             <label for="username" style="padding-top: 15px">Gebruikersnaam</label>
@@ -51,7 +51,7 @@
                 <div class="col-md-4" id="frontRegister">
                     <h4>Nieuw op geofeelings? Registreer nu</h4>
                     <hr>
-                    <div ng-show="error" class="alert alert-danger">{{ error }}</div>
+                    <div ng-show="registererror" class="alert alert-danger">{{ registererror }}</div>
                     <form name="registerForm" novalidate>
                         <div class="form-group">
                             <label for="username">Gebruikersnaam</label>
