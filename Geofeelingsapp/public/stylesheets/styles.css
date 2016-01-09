@@ -130,7 +130,7 @@ body{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	position: inherit;
-	margin-top:-1.5%;
+	margin-top:1.5%;
 }
 
 
@@ -177,7 +177,7 @@ body{
 
 
 /* Small devices (tablets, 768px and up) */
-@media (max-width: 1200px) {
+@media (max-width: 999px) {
 	#frontMainDiv{
 		margin:0;
 	}
