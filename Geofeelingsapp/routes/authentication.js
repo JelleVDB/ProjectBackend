@@ -82,10 +82,8 @@ module.exports = function(app, passport){
         res.json({ redirect : '/account' });
     });
 
-    app.get('/admin', isAdmin, function(req, res){
-        //logout the user
-        req.logout();
 
+    app.get('/admin', isAdmin, function(req, res){
         //redirect the user to the login/register page
         res.json({ redirect : '/admin' });
     });
@@ -131,6 +129,7 @@ function isAdmin(req, res, next) {
         return res.json({ redirect : '/map' });
     } else {
         //if logged in AND admin, let the admin continue
+        console.log(req.user);
         if(req.user.admin)
         {
             next();
