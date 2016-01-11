@@ -11,7 +11,7 @@ EventRepo = (function(){
     var createEvent = function(event, next){
         Event.create(event, function(err){
             if(err){
-                return next(err);
+                return next({error: err});
             }
 
             next(event);
@@ -21,7 +21,7 @@ EventRepo = (function(){
             Event.find({}).sort('message').exec(function(err, events){
                 if(err){
                     console.log(err);
-                    next(err, null);
+                    next({error: err}, null);
                 }
                 next(null, events);
             })

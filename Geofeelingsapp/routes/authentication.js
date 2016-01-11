@@ -83,14 +83,17 @@ module.exports = function(app, passport){
         res.json({ redirect : '/account' });
     });
 
+
     app.get('/admin', isAdmin, function(req, res){
         //get all events
         EventRepo.getAllEvents(function(err, events){
             if(err){
                 return res.json(err);
             }
-            res.json({ events : events });
+            res.json({ user: req.user, events : events, redirect: '/admin' });
         });
+
+    });
 
     app.post('/event', function(req, res){
         EventRepo.createEvent(req.body, function(next){
@@ -110,7 +113,7 @@ function isLoggedIn(req, res, next) {
         //if logged in, let the user continue
         next();
     }
-}
+};
 
 // User is admin
 function isAdmin(req, res, next) {
@@ -130,4 +133,4 @@ function isAdmin(req, res, next) {
         }
 
     }
-}
+};

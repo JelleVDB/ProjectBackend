@@ -7,8 +7,10 @@
 
     var adminController = function ($scope, $http, $location) {
         //Request all map events
-        $http.get('/events').success(function(data) {
-
+        $http.get('/admin').success(function(data) {
+            $scope.user = data.user;
+            $location.path(data.redirect);
+            $scope.events = data.events;
         });
 
 
