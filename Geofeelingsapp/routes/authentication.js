@@ -82,31 +82,24 @@ module.exports = function(app, passport){
         res.json({ redirect : '/account' });
     });
 
+    //if the user requests the admin page
     app.get('/admin', isAdmin, function(req, res){
-        //logout the user
-        req.logout();
-
-        //redirect the user to the login/register page
+        //get all events
+        EventRepo.getAllEvents(function(err, events){
+            if(err){
+                return res.json(err);
+            }
+            res.json({ events : events });
+        });
+        //redirect the user to the admin page
         res.json({ redirect : '/admin' });
     });
 
-
-    //TODO: nog aan te passen, even rap om code te hebben voor events te posten
     var EventRepo = require('../data/models/eventrepo.js')
     app.post('/event', function(req, res){
         EventRepo.createEvent(req.body, function(next){
             res.json({ redirect : '/map' });
         });
-    });
-
-    app.get('/events', function(req, res){
-       EventRepo.getAllEvents(function(err, events){
-          if(err){
-              //TODO: zet error in repo om naar json errors
-              return res.json(err);
-          }
-           res.json({ events : events });
-       });
     });
 };
 
