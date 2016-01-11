@@ -81,6 +81,33 @@ module.exports = function(app, passport){
         //redirect the user to the login/register page
         res.json({ redirect : '/account' });
     });
+
+    app.get('/admin', isAdmin, function(req, res){
+        //logout the user
+        req.logout();
+
+        //redirect the user to the login/register page
+        res.json({ redirect : '/admin' });
+    });
+
+
+    //TODO: nog aan te passen, even rap om code te hebben voor events te posten
+    var EventRepo = require('../data/models/eventrepo.js')
+    app.post('/event', function(req, res){
+        EventRepo.createEvent(req.body, function(next){
+            res.json({ redirect : '/map' });
+        });
+    });
+
+    app.get('/events', function(req, res){
+       EventRepo.getAllEvents(function(err, events){
+          if(err){
+              //TODO: zet error in repo om naar json errors
+              return res.json(err);
+          }
+           res.json({ events : events });
+       });
+    });
 };
 
 
@@ -93,5 +120,24 @@ function isLoggedIn(req, res, next) {
     } else {
         //if logged in, let the user continue
         next();
+    }
+}
+
+// User is admin
+function isAdmin(req, res, next) {
+    //Check if the user is authenticated (logged in)
+    if (!req.isAuthenticated()) {
+        //if not, redirect back to the map page
+        return res.json({ redirect : '/map' });
+    } else {
+        //if logged in AND admin, let the admin continue
+        if(req.user.admin)
+        {
+            next();
+        }else{
+            //if not admin, return back to the map page
+            return res.json({ redirect : '/map' });
+        }
+
     }
 }

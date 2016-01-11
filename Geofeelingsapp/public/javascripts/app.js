@@ -12,6 +12,8 @@
             templateUrl: "../account.html"
         }).when("/map", {
             templateUrl: "../map.html"
+        }).when("/admin", {
+            templateUrl: "../admin.html"
         }).otherwise({
             redirectTo: "/map"
         });

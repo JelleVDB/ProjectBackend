@@ -2,12 +2,9 @@
  * Created by jelle on 28/12/2015.
  */
 
-var mongoose = require('mognoose');
-var eventSchema = require("../schemas/event")
+var mongoose = require('mongoose');
+var EventSchema = require("../schemas/event")
 
-
-module.exports = mongoose.model('Event', eventSchema);
-
-var Event = mongoose.model('Event', eventSchema, "events");
+var Event = mongoose.model('Event', EventSchema, "events");
 
 module.exports = Event;

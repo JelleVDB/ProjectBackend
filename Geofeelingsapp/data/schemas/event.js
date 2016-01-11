@@ -2,12 +2,12 @@
  * Created by jelle on 28/12/2015.
  */
 
-var mongoose = require('mognoose');
+var mongoose = require('mongoose');
 
-var eventSchema = mongoose.Schema({
-    userid: {
+var EventSchema = mongoose.Schema({
+    /*userid: {
         type: Schema.Types.ObjectId, ref:'user'
-    },
+    },*/
     message: {
         type: String
     },
