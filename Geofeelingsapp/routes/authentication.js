@@ -4,6 +4,7 @@
 
 var express = require('express');
 var path = require('path');
+var EventRepo = require('../data/models/eventrepo.js');
 
 module.exports = function(app, passport){
 
@@ -91,11 +92,9 @@ module.exports = function(app, passport){
             }
             res.json({ events : events });
         });
-        //redirect the user to the admin page
-        res.json({ redirect : '/admin' });
-    });
 
-    var EventRepo = require('../data/models/eventrepo.js')
+
+
     app.post('/event', function(req, res){
         EventRepo.createEvent(req.body, function(next){
             res.json({ redirect : '/map' });
@@ -124,6 +123,7 @@ function isAdmin(req, res, next) {
         return res.json({ redirect : '/map' });
     } else {
         //if logged in AND admin, let the admin continue
+        console.log(req.user);
         if(req.user.admin)
         {
             next();
