@@ -1,3 +1,24 @@
 <div ng-controller="adminController">
-    <h2>Admin</h2>
+    <div class="navbar navbar-custom navbar-fixed-top">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/map">Geofeelings</a>
+            <span id="loggedUser">Ingelogd als: {{user.username}}</span>
+            <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li class="active" ng-if="user.admin"><a href="#/admin">Admin</a></li>
+                <li><a href="#" ng-click="logout()">Logout</a></li>
+                <li>&nbsp;</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid" id="main">
+        
+    </div>
 </div>
