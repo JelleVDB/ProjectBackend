@@ -35,11 +35,11 @@
     
       <h2>How do you feel here?</h2>
 
-        <form id="mapForm" novalidate>
+        <form id="mapForm" name="mapForm" novalidate>
             <div class="cc-selector">
-                <input checked="checked" id="happy" type="radio" name="mood" value="1" ng-model="mapData.mood" />
+                <input checked="checked" id="happy" type="radio" name="mood" value="1" ng-model="mapData.mood" required/>
                 <label class="emoticon-cc happy" for="happy"></label>
-                <input id="unhappy" type="radio" name="mood" value="0" ng-model="mapData.mood" />
+                <input id="unhappy" type="radio" name="mood" value="0" ng-model="mapData.mood"  required/>
                 <label class="emoticon-cc unhappy" for="unhappy"></label>
             </div>
 

@@ -54,6 +54,9 @@
                     $scope.error = data.error;
                     //redirect if any redirects are given
                     $location.path(data.redirect);
+
+                    //leegmaken van form
+                    $scope.mapData.message = "";
                 });
         };
     };

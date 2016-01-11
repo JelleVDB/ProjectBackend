@@ -18,7 +18,7 @@ EventRepo = (function(){
         });
     },
         getAllEvents = function(next){
-            Event.find({}).sort('message').exec(function(err, events){
+            Event.find({}).sort('author').exec(function(err, events){
                 if(err){
                     console.log(err);
                     next({error: err}, null);
