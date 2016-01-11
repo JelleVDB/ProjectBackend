@@ -19,6 +19,13 @@
         </div>
     </div>
     <div class="container-fluid" id="main">
-        
+        <table>
+            <tr ng-repeat="event in events">
+                <td>{{event.author}}</td>
+                <td>{{event.message}}</td>
+                <td>{{event.mood}}</td>
+                <td><a href="#">delete</a></td>
+            </tr>
+        </table>
     </div>
 </div>
