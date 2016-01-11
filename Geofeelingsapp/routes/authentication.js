@@ -83,7 +83,6 @@ module.exports = function(app, passport){
         res.json({ redirect : '/account' });
     });
 
-    //if the user requests the admin page
     app.get('/admin', isAdmin, function(req, res){
         //get all events
         EventRepo.getAllEvents(function(err, events){
@@ -92,8 +91,6 @@ module.exports = function(app, passport){
             }
             res.json({ events : events });
         });
-
-
 
     app.post('/event', function(req, res){
         EventRepo.createEvent(req.body, function(next){

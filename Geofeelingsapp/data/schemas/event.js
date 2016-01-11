@@ -3,12 +3,11 @@
  */
 
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
 var EventSchema = mongoose.Schema({
-    userid: {
-        type: Schema.Types.ObjectId, ref:'User'
-    },
+    /*userid: {
+        type: Schema.Types.ObjectId, ref:'user'
+    },*/
     message: {
         type: String
     },
