@@ -100,6 +100,12 @@ module.exports = function(app, passport){
             res.json({ redirect : '/map' });
         });
     });
+
+    app.post('/event:id', function(req, res){
+        EventRepo.deleteEvent(req.params.id, function(next){
+            res.json({redirect:'/admin'});
+        })
+    });
 };
 
 
@@ -123,7 +129,6 @@ function isAdmin(req, res, next) {
         return res.json({ redirect : '/map' });
     } else {
         //if logged in AND admin, let the admin continue
-        console.log(req.user);
         if(req.user.admin)
         {
             next();

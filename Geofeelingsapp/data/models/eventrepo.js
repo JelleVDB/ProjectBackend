@@ -25,12 +25,22 @@ EventRepo = (function(){
                 }
                 next(null, events);
             })
+        },
+        deleteEvent = function(eventId, next){
+            Event.find({_id:eventId}).remove().exec(function(err){
+                if(err){
+                    console.log(err);
+                    next({error: err});
+                }
+                next(null);
+            })
         };
 
     return {
         model: Event,
         createEvent: createEvent,
-        getAllEvents: getAllEvents
+        getAllEvents: getAllEvents,
+        deleteEvent: deleteEvent
     }
 
 

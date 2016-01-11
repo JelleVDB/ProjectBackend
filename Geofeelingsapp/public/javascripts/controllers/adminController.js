@@ -5,7 +5,7 @@
 (function () {
     "use strict";
 
-    var adminController = function ($scope, $http, $location) {
+    var adminController = function ($scope, $http, $location, $route) {
         //Request all map events
         $http.get('/admin').success(function(data) {
             $scope.user = data.user;
@@ -13,8 +13,16 @@
             $scope.events = data.events;
         });
 
+        $scope.deleteEvent = function(event){
+            $http.post('/event'+ event._id).success(function(data){
+                $location.path(data.redirect);
+                $route.reload();
+
+            });
+        };
+
 
     };
 
-    angular.module('geofeelingsApp').controller('adminController', ["$scope", "$http", "$location", adminController]);
+    angular.module('geofeelingsApp').controller('adminController', ["$scope", "$http", "$location", "$route", adminController]);
 })();
