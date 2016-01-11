@@ -40,6 +40,7 @@
 
             var mapData = {
                 userid: $scope.user._id,
+                author: $scope.user.username,
                 message: $scope.mapData.message,
                 mood: happy,
                 //TODO map location ophalen via google maps

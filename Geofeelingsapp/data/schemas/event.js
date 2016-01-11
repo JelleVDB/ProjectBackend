@@ -9,6 +9,9 @@ var EventSchema = mongoose.Schema({
     userid: {
         type: Schema.Types.ObjectId, ref:'User'
     },
+    author: {
+        type: String
+    },
     message: {
         type: String
     },

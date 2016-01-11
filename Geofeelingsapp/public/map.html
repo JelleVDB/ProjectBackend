@@ -35,7 +35,7 @@
     
       <h2>How do you feel here?</h2>
 
-        <form id="mapForm">
+        <form id="mapForm" novalidate>
             <div class="cc-selector">
                 <input checked="checked" id="happy" type="radio" name="mood" value="1" ng-model="mapData.mood" />
                 <label class="emoticon-cc happy" for="happy"></label>
@@ -45,10 +45,11 @@
 
             <div class="form-group">
                 <label for="message">Bericht:</label>
-                <textarea id="message" ng-model="mapData.message" class="form-control" rows="5" />
+                <textarea id="message" ng-model="mapData.message" class="form-control" rows="5" required />
             </div>
             <button type="submit" ng-disabled="mapForm.$invalid" ng-click="addToMap()" class="btn btn-primary" >Toevoegen</button>
         </form>
+        <div ng-show="error" class="alert alert-danger">{{ error }}</div>
       
       <hr>
 
