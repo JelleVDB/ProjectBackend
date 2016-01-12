@@ -37,7 +37,7 @@ angular.module('geofeelingsApp')
                 locations = convertToMapPoints(response);
 
                 // Then initialize the map.
-                initialize(latitude, longitude);
+                initialize(latitude, longitude, response);
             }).error(function(){
             });
         };
@@ -55,7 +55,7 @@ angular.module('geofeelingsApp')
                 var event = response[i];
 
                 var mood;
-                if(event.happy){
+                if(event.mood){
                     mood = "Happy";
                 }else{
                     mood = "Unhappy";
@@ -84,7 +84,7 @@ angular.module('geofeelingsApp')
         };
 
         // Initializes the map
-        var initialize = function(latitude, longitude) {
+        var initialize = function(latitude, longitude, response) {
 
             // Uses the selected lat, long as starting point
             var myLatLng = {lat: parseFloat(selectedLat), lng: parseFloat(selectedLong)};
@@ -101,12 +101,23 @@ angular.module('geofeelingsApp')
 
             // Loop through each location in the array and place a marker
             locations.forEach(function(n, i){
-                var marker = new google.maps.Marker({
-                    position: n.latlon,
-                    map: map,
-                    title: "Event",
-                    icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
-                });
+                var marker;
+                if(response[i].mood){
+                    marker = new google.maps.Marker({
+                        position: n.latlon,
+                        map: map,
+                        title: "Happy",
+                        icon: "https://lh6.ggpht.com/GO-A_KjZDF9yJeeER2fajzO4MgqML-q2rccm27ynBlD6R-xOR3pJOb42WKfE0MNFtRsKwK4=w9-h9",
+                    });
+                }else{
+                    marker = new google.maps.Marker({
+                        position: n.latlon,
+                        map: map,
+                        title: "Unhappy",
+                        icon: "https://lh3.ggpht.com/hx6IeSRualApBd7KZB9s2N7bcHZIjtgr9VEuOxHzpd05_CZ6RxZwehpXCRN-1ps3HuL0g8Wi=w9-h9",
+                    });
+                }
+
 
                 // For each marker created, add a listener that checks for clicks
                 google.maps.event.addListener(marker, 'click', function(e){
