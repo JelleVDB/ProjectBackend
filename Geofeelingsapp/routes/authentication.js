@@ -106,6 +106,17 @@ module.exports = function(app, passport){
             res.json({redirect:'/admin'});
         })
     });
+
+    app.get('/events', function(req, res){
+        //get all events
+        EventRepo.getAllEvents(function(err, events){
+            if(err){
+                return res.json(err);
+            }
+            res.json(events);
+        });
+
+    });
 };
 
 

@@ -47,6 +47,8 @@
                 <label for="message">Bericht:</label>
                 <textarea id="message" ng-model="mapData.message" class="form-control" rows="5" required />
             </div>
+            <input type="hidden" id="latitude" ng-model="mapData.lat" />
+            <input type="hidden" id="longitude" ng-model="mapData.long" />
             <button type="submit" ng-disabled="mapForm.$invalid" ng-click="addToMap()" class="btn btn-primary" >Toevoegen</button>
         </form>
         <div ng-show="error" class="alert alert-danger">{{ error }}</div>
@@ -59,4 +61,3 @@
   </div>
 </div>
 </div>
-<script defer src="javascripts/scripts.js"></script>
