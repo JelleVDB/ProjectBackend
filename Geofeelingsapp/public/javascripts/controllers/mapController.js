@@ -8,6 +8,7 @@
     var mapController = function ($scope, $http, $location, geolocation, gservice) {
 
         //Variables
+
         $scope.mapData = {};
         var coords = {};
         var lat = 0;
@@ -17,16 +18,26 @@
         $scope.mapData.lat = 50.8570277;
         $scope.mapData.long = 3.6319101000000273;
 
-        geolocation.getLocation().then(function(data){
-            // Set the latitude and longitude equal to the HTML5 coordinates
-            coords = {lat:data.coords.latitude, long:data.coords.longitude};
+        //var socket = io.connect('http://localhost:1337');
+        var hostname = window.location.protocol + "//"+ window.location.host + "/" ;
+        var socket = io.connect(hostname);
 
-            // Display coordinates in location textboxes rounded to three decimal points
-            $scope.mapData.long = parseFloat(coords.long).toFixed(3);
-            $scope.mapData.lat = parseFloat(coords.lat).toFixed(3);
+        var loadMap = function(lat, long){
+                gservice.refresh(lat, long);
+            },
+            getGeolocation = function(cb){
+                geolocation.getLocation().then(function(data){
+                    // Set the latitude and longitude equal to the HTML5 coordinates
+                    coords = {lat:data.coords.latitude, long:data.coords.longitude};
 
-            gservice.refresh($scope.mapData.lat, $scope.mapData.long);
-        });
+                    // Display coordinates in location textboxes rounded to three decimal points
+                    $scope.mapData.long = parseFloat(coords.long).toFixed(3);
+                    $scope.mapData.lat = parseFloat(coords.lat).toFixed(3);
+
+                    cb($scope.mapData.lat, $scope.mapData.long);
+                });
+            };
+
 
         //Request the map page from the server
         $http.get('/map').success(function(data) {
@@ -36,6 +47,8 @@
             } else {
                 //if the user IS logged in, it will return the user's data
                 $scope.user = data;
+
+                getGeolocation(loadMap);
             }
         });
 
@@ -75,9 +88,15 @@
                     //leegmaken van form
                     $scope.mapData.message = "";
 
-                    gservice.refresh(parseFloat($scope.mapData.lat), parseFloat($scope.mapData.long));
+
+                    //gservice.refresh(parseFloat($scope.mapData.lat), parseFloat($scope.mapData.long));
+                    socket.emit("newMapPin");
                 });
         };
+
+        socket.on("refreshMap", function(){
+            loadMap($scope.mapData.lat, $scope.mapData.long);
+        });
     };
 
     angular.module('geofeelingsApp').controller('mapController', ["$scope", "$http", "$location", "geolocation", "gservice", mapController]);

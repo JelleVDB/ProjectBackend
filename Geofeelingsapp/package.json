@@ -21,6 +21,7 @@
     "passport": "latest",
     "passport-local": "latest",
     "express-session": "latest",
-    "connect-flash": "latest"
+    "connect-flash": "latest",
+    "socket.io": "~1.3.7"
   }
 }

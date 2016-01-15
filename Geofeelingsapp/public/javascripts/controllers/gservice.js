@@ -94,6 +94,9 @@ angular.module('geofeelingsApp')
 
                 // Create a new map and place in the index.html page
                 var map = new google.maps.Map(document.getElementById('map-canvas'), {
+                    scrollWheel: false,
+                    streetViewControl: false,
+                    mapTypeControl: false,
                     zoom: 13,
                     center: myLatLng
                 });
@@ -142,8 +145,8 @@ angular.module('geofeelingsApp')
 
 
         // Refresh the page upon window load. Use the initial latitude and longitude
-        google.maps.event.addDomListener(window, 'load',
-            googleMapService.refresh(selectedLat, selectedLong));
+        /*google.maps.event.addDomListener(window, 'load',
+            googleMapService.refresh(selectedLat, selectedLong));*/
 
 
         return googleMapService;

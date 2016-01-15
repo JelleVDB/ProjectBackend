@@ -27,6 +27,7 @@ var connectDB = DBService(config.MONGODBURL, require('mongoose'));
  */
 
 var server = http.createServer(app);
+var io = require('socket.io')(server);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -38,6 +39,9 @@ server.listen(config.PORT, function(){
 });
 server.on('error', onError);
 server.on('listening', onListening);
+
+var sockets = io.listen(server);
+require('../sockets.js')(io);
 
 /**
  * Event listener for HTTP server "error" event.
