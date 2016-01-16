@@ -8,8 +8,8 @@
     var app = angular.module('geofeelingsApp', ["ngRoute"]);
 
     app.config(function ($routeProvider) {
-        $routeProvider.when("/account", {
-            templateUrl: "../account.html"
+        $routeProvider.when("/startpage", {
+            templateUrl: "../startpage.html"
         }).when("/map", {
             templateUrl: "../map.html"
         }).when("/admin", {

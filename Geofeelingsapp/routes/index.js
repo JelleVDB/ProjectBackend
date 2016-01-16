@@ -85,7 +85,7 @@ module.exports = function(app, passport){
         req.logout();
 
         //redirect the user to the login/register page
-        res.json({ redirect : '/account' });
+        res.json({ redirect : '/startpage' });
     });
 
 
@@ -130,7 +130,7 @@ function isLoggedIn(req, res, next) {
     //Check if the user is authenticated (logged in)
     if (!req.isAuthenticated()) {
         //if not, redirect to login/register page
-        return res.json({ redirect : '/account' });
+        return res.json({ redirect : '/startpage' });
     } else {
         //if logged in, let the user continue
         next();
