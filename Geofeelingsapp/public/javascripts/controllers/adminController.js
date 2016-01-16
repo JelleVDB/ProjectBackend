@@ -27,9 +27,6 @@
 
             return dateString;
         };
-
-
-
     };
 
     angular.module('geofeelingsApp').controller('adminController', ["$scope", "$http", "$location", "$route", adminController]);

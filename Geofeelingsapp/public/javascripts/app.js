@@ -14,6 +14,8 @@
             templateUrl: "../map.html"
         }).when("/admin", {
             templateUrl: "../admin.html"
+        }).when("/settings", {
+            templateUrl: "../settings.html"
         }).otherwise({
             redirectTo: "/map"
         });

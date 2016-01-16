@@ -74,6 +74,11 @@ module.exports = function(app, passport){
        return res.json(req.user);
     });
 
+    app.get('/settings', isLoggedIn, function(req, res){
+        //if he is logged in, return the user details
+        return res.json(req.user);
+    });
+
     //If the user wants to logout
     app.get('/logout', function(req, res){
         //logout the user
