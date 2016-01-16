@@ -5,6 +5,7 @@
 var express = require('express');
 var path = require('path');
 var EventRepo = require('../data/models/eventrepo.js');
+var userRepo = require('../data/models/userrepo.js');
 
 module.exports = function(app, passport){
 
@@ -77,6 +78,13 @@ module.exports = function(app, passport){
     app.get('/settings', isLoggedIn, function(req, res){
         //if he is logged in, return the user details
         return res.json(req.user);
+    });
+
+    app.post('/settings', function(req, res){
+        console.log(req.body);
+        userRepo.updateUser(req.body, function(next){
+            res.json({ redirect : '/settings' });
+        });
     });
 
     //If the user wants to logout

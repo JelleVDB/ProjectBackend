@@ -23,24 +23,31 @@
         <div class="col-md-4">
             <h4>Settings</h4>
             <hr>
+            <div ng-show="settingerror" class="alert alert-danger">{{ settingerror }}</div>
             <form name="settingForm" novalidate>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" ng-model="settingData.username" class="form-control" required />
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" ng-model="settingData.password" class="form-control" required />
+                    <input type="text" id="username" ng-model="user.username" class="form-control" readonly required />
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input type="text" id="email" ng-model="settingData.email" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+                    <input type="text" id="email" ng-model="user.email" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
                 </div>
                 <div class="form-group">
-                    <label for="Chat">Chat</label>
-                    <input type="checkbox" id="Chat" ng-model="settingData.chat" class="form-control" required />
+                    <label for="age">Age</label>
+                    <input type="text" id="age" ng-model="user.age" class="form-control" readonly required />
                 </div>
-                <button type="submit" ng-disabled="settingForm.$invalid" ng-click="register()" class="btn btn-warning" >Change</button>
+                <div class="form-group">
+                    <label for="chat">Chat</label>
+                    <div class="onoffswitch">
+                        <input type="checkbox" id="chat" class="onoffswitch-checkbox" ng-model="user.chat" required />
+                        <label class="onoffswitch-label" for="chat">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" ng-disabled="settingForm.$invalid" ng-click="saveChanges()" class="btn btn-primary" >Save changes</button>
             </form>
         </div>
     </div>

@@ -16,9 +16,23 @@ UsersRepo = (function(){
         });
     };
 
+    var updateUser = function(data, next){
+        console.log(data.id);
+        var query = { _id: data.id};
+        var update = {chat: data.chat, email: data.email};
+        var options = {new: true};
+
+        User.findOneAndUpdate(query, update, options, function (err, doc){
+            if (err) {
+                console.log('got an error');
+            }
+        });
+    };
+
     return {
         model: User,
-        createUser: createUser
+        createUser: createUser,
+        updateUser: updateUser
     };
 
 })();
