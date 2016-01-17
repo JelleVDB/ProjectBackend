@@ -40,7 +40,7 @@
                                 <td>{{event.message}}</td>
                                 <td ng-if="event.mood"><img src="images/happy.png" width="50px" height="50px"></td>
                                 <td ng-if="!event.mood"><img src="images/unhappy.png" width="50px" height="50px"></td>
-                                <td>{{formatTime(event.timestamp)}}</td>
+                                <td>{{event.timestamp | date:'dd-MM-yyyy HH:mm'}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -62,8 +62,8 @@
                             <td>{{allusers.username}}</td>
                                 <td>
                                     <div class="onoffswitch">
-                                    <input type="checkbox" id="admin" class="onoffswitch-checkbox" ng-model="allusers.admin" />
-                                    <label class="onoffswitch-label" for="admin">
+                                    <input type="checkbox" ng-attr-id="{{allusers.username}}" class="onoffswitch-checkbox" ng-model="allusers.admin" />
+                                    <label class="onoffswitch-label" ng-attr-for="{{allusers.username}}">
                                         <span class="onoffswitch-inner"></span>
                                         <span class="onoffswitch-switch"></span>
                                     </label>

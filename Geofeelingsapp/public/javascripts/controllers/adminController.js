@@ -23,13 +23,6 @@
 
             });
         };
-
-        $scope.formatTime = function(time){
-            var date = new Date(time);
-            var dateString = date.getDate() + "/" + date.getMonth() +1 + "/" + date.getFullYear();
-
-            return dateString;
-        };
     };
 
     angular.module('geofeelingsApp').controller('adminController', ["$scope", "$http", "$location", "$route", adminController]);
