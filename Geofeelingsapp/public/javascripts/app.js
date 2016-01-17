@@ -16,6 +16,8 @@
             templateUrl: "../admin.html"
         }).when("/settings", {
             templateUrl: "../settings.html"
+        }).when("/user/:param", {
+            templateUrl: "../userfeed.html"
         }).otherwise({
             redirectTo: "/map"
         });

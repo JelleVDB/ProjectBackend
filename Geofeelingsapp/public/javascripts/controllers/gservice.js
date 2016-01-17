@@ -62,7 +62,8 @@ angular.module('geofeelingsApp')
                 }
                 // Create popup windows for each record
                 var  contentString =
-                    '<p><b>Username</b>: ' + event.author +
+                    '<b>Username</b>: ' +
+                    "<a href='#/user/" + event.author + "'>" + event.author + "</a>" +
                     '<br><b>Mood</b>: ' + mood +
                     '<br><b>Message</b>: ' + event.message +
                     '</p>';

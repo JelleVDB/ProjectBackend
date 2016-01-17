@@ -17,7 +17,7 @@
         });
 
         $scope.deleteEvent = function(event){
-            $http.post('/event'+ event._id).success(function(data){
+            $http.post('/deleteevent'+ event._id).success(function(data){
                 $location.path(data.redirect);
                 $route.reload();
 

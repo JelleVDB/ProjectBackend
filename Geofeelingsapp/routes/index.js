@@ -130,7 +130,7 @@ module.exports = function(app, passport){
         });
     });
 
-    app.post('/event:id', function(req, res){
+    app.post('/deleteevent:id', function(req, res){
         EventRepo.deleteEvent(req.params.id, function(next){
             res.json({redirect:'/admin'});
         })
@@ -145,6 +145,23 @@ module.exports = function(app, passport){
             res.json(events);
         });
 
+    });
+
+    app.get('/user:name', isLoggedIn, function(req, res){
+        console.log(req.params.name);
+        userRepo.getUserByName(req.params.name, function(err, users){
+            if(err){
+                return res.json(err);
+            }
+            var user = users[0];
+            EventRepo.getEventsByUser(user, function(err, events){
+                if(err){
+                    return res.json(err);
+                }
+
+                res.json({user: req.user, events: events, viewuser: user})
+            })
+        });
     });
 };
 

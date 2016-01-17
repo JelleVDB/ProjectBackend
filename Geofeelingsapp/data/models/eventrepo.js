@@ -20,7 +20,6 @@ EventRepo = (function(){
         getAllEvents = function(next){
             Event.find({}).sort('author').exec(function(err, events){
                 if(err){
-                    console.log(err);
                     next({error: err}, null);
                 }
                 next(null, events);
@@ -29,10 +28,17 @@ EventRepo = (function(){
         deleteEvent = function(eventId, next){
             Event.find({_id:eventId}).remove().exec(function(err){
                 if(err){
-                    console.log(err);
                     next({error: err});
                 }
                 next(null);
+            })
+        },
+        getEventsByUser = function(user, next){
+            Event.find({author:user.username}).exec(function(err, events){
+                if(err){
+                    next({error: err}, null);
+                }
+                next(null, events);
             })
         };
 
@@ -40,7 +46,8 @@ EventRepo = (function(){
         model: Event,
         createEvent: createEvent,
         getAllEvents: getAllEvents,
-        deleteEvent: deleteEvent
+        deleteEvent: deleteEvent,
+        getEventsByUser: getEventsByUser
     }
 
 

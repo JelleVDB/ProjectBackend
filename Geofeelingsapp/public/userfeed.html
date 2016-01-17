@@ -1,0 +1,11 @@
+<div ng-controller="userController">
+    <span id="loggedUser">Ingelogd als: {{user.username}}</span><br />
+    <h1>User: {{viewuser.username}}</h1>
+    <table>
+    <tr ng-repeat="event in events">
+        <td>{{event.message}}</td>
+        <td>{{event.mood}}</td>
+        <td>{{event.timestamp}}</td>
+    </tr>
+    </table>
+</div>

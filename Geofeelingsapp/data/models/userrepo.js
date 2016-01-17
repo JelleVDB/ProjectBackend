@@ -29,11 +29,19 @@ UsersRepo = (function(){
         });
     };
 
-    var getAllUsers = function (cb) {
+    var getAllUsers = function (next) {
         User.find({}, function(err, users) {
             if (err) throw err;
 
-            cb(null, users);
+            next(null, users);
+        });
+    };
+
+    var getUserByName = function(name, next){
+        User.find({username: name}, function(err, user) {
+            if (err) throw err;
+
+            next(null, user);
         });
     };
 
@@ -41,7 +49,8 @@ UsersRepo = (function(){
         model: User,
         createUser: createUser,
         updateUser: updateUser,
-        getAllUsers: getAllUsers
+        getAllUsers: getAllUsers,
+        getUserByName: getUserByName
     };
 
 })();
