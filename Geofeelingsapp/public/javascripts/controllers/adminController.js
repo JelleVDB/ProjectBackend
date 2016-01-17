@@ -11,6 +11,9 @@
             $scope.user = data.user;
             $location.path(data.redirect);
             $scope.events = data.events;
+            $scope.users = data.users;
+
+            console.log($scope.users);
         });
 
         $scope.deleteEvent = function(event){

@@ -99,12 +99,28 @@ module.exports = function(app, passport){
 
     app.get('/admin', isAdmin, function(req, res){
         //get all events
-        EventRepo.getAllEvents(function(err, events){
+        /*EventRepo.getAllEvents(function(err, events){
             if(err){
                 return res.json(err);
             }
             res.json({ user: req.user, events : events, redirect: '/admin' });
-        });
+        });*/
+
+         EventRepo.getAllEvents(function(err, events){
+             userRepo.getAllUsers(function(err,users){
+                 if(err)
+                     return res.json(err);
+                 res.json({user: req.user, events : events, users : users, redirect: '/admin' });
+             });
+         });
+
+        /*userRepo.getAllUsers(function(err,users)
+        {
+            if(err){
+                return res.json(err);
+            }
+            res.json({users : users, redirect: '/admin' });
+        });*/
 
     });
 

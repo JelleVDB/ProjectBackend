@@ -29,10 +29,19 @@ UsersRepo = (function(){
         });
     };
 
+    var getAllUsers = function (cb) {
+        User.find({}, function(err, users) {
+            if (err) throw err;
+
+            console.log(users);
+        });
+    };
+
     return {
         model: User,
         createUser: createUser,
-        updateUser: updateUser
+        updateUser: updateUser,
+        getAllUsers: getAllUsers
     };
 
 })();

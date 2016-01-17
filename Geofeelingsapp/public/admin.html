@@ -20,28 +20,52 @@
         </div>
     </div>
     <div class="container-fluid" id="main">
-        <br>
-        <label>Search: <input ng-model="searchText"></label>
-            <div class="table-responsive">
-                <table class="table table-hover" style="width: 50%">
-                    <thead>
-                    <tr>
-                        <th>Author</th>
-                        <th>Message</th>
-                        <th>Mood</th>
-                        <th>Date added</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="event in events | filter: searchText">
-                        <td><a href="" ng-click="deleteEvent(event)"><span class="glyphicon glyphicon-trash"></span></a> {{event.author}}</td>
-                        <td>{{event.message}}</td>
-                        <td ng-if="event.mood"><img src="images/happy.png" width="50px" height="50px"></td>
-                        <td ng-if="!event.mood"><img src="images/unhappy.png" width="50px" height="50px"></td>
-                        <td>{{formatTime(event.timestamp)}}</td>
-                    </tr>
-                    </tbody>
-                </table>
+        <div class="row">
+            <div class="col-xs-4">
+                <h3>Delete events</h3>
+                <label>Search: <input ng-model="searchText"></label>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Author</th>
+                                <th>Message</th>
+                                <th>Mood</th>
+                                <th>Date added</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="event in events | filter: searchText">
+                                <td><a href="" ng-click="deleteEvent(event)"><span class="glyphicon glyphicon-trash"></span></a> {{event.author}}</td>
+                                <td>{{event.message}}</td>
+                                <td ng-if="event.mood"><img src="images/happy.png" width="50px" height="50px"></td>
+                                <td ng-if="!event.mood"><img src="images/unhappy.png" width="50px" height="50px"></td>
+                                <td>{{formatTime(event.timestamp)}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <div class="col-xs-3">
+                <h3>Create admin</h3>
+                <label>Search: <input ng-model="searchUser"></label>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Admin</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="allusers in users | filter: searchUser">
+                            <td>{{allusers.name}}</td>
+                            <td>{{allusers.admin}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             </div>
 </div>
 </div>
