@@ -33,7 +33,7 @@ UsersRepo = (function(){
         User.find({}, function(err, users) {
             if (err) throw err;
 
-            console.log(users);
+            cb(null, users);
         });
     };
 
