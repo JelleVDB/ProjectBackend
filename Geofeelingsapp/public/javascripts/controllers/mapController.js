@@ -115,7 +115,7 @@
                 minutes = "0" + minutes;
             }
 
-            bobtheHTMLBouwer += "<li>" + hours + ":" + minutes;
+            bobtheHTMLBouwer += "<li class='messageLI'>" + hours + ":" + minutes;
             bobtheHTMLBouwer += " " + sender.username + ": " + message;
 
 
