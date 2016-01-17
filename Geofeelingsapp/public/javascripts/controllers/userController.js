@@ -13,7 +13,6 @@
             $scope.user = data.user;
             $scope.events = data.events;
             $scope.viewuser = data.viewuser;
-
         });
 
     };

@@ -60,7 +60,15 @@
                         <tbody>
                         <tr ng-repeat="allusers in users | filter: searchUser">
                             <td>{{allusers.username}}</td>
-                            <td>{{allusers.admin}}</td>
+                                <td>
+                                    <div class="onoffswitch">
+                                    <input type="checkbox" id="admin" class="onoffswitch-checkbox" ng-model="allusers.admin" />
+                                    <label class="onoffswitch-label" for="admin">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

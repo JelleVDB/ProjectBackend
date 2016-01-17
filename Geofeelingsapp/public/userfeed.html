@@ -1,11 +1,55 @@
 <div ng-controller="userController">
-    <span id="loggedUser">Ingelogd als: {{user.username}}</span><br />
-    <h1>User: {{viewuser.username}}</h1>
-    <table>
-    <tr ng-repeat="event in events">
-        <td>{{event.message}}</td>
-        <td>{{event.mood}}</td>
-        <td>{{event.timestamp}}</td>
-    </tr>
-    </table>
+    <div class="navbar navbar-custom navbar-fixed-top">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/map">Geofeelings</a>
+            <span id="loggedUser">Ingelogd als: {{user.username}}</span>
+            <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li ng-if="user.admin"><a href="#/admin">Admin</a></li>
+                <li class="active"><a href="#/settings">Settings</a></li>
+                <li><a href="#" ng-click="logout()">Logout</a></li>
+                <li>&nbsp;</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid" id="main">
+        <div class="container">
+            <div class="page-header">
+                <h1 id="timeline">Timeline {{viewuser.username}}</h1>
+            </div>
+            <ul class="timeline" ng-repeat="event in events">
+                <li ng-if="event.mood">
+                    <div class="timeline-badge happy"></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <!--<h4 class="timeline-title">Titel</h4>-->
+                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{event.timestamp | date:'yyyy-MM-dd HH:mm'}}</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>{{event.message}}</p>
+                        </div>
+                    </div>
+                </li>
+                <li ng-if="!event.mood" class="timeline-inverted">
+                    <div class="timeline-badge unhappy"></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <!--<h4 class="timeline-title">Titel</h4>-->
+                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{event.timestamp | date:'yyyy-MM-dd HH:mm'}}</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>{{event.message}}</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
