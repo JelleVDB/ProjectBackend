@@ -228,7 +228,7 @@ body{
 .chat-box {
 	font:normal normal 11px/1.4 Tahoma,Verdana,Sans-Serif;
 	color:#333;
-	width:25%; /* Chatbox width */
+	width:24.5%; /* Chatbox width */
 	border:1px solid #344150;
 	border-bottom:none;
 	background-color:white;
@@ -271,7 +271,7 @@ body{
 .chat-box .chat-box-content {
 	padding:10px;
 	display:none;
-	overflow-y: scroll;
+	overflow-y: auto;
 	max-height: 400px;
 }
 

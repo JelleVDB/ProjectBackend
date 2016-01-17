@@ -45,12 +45,12 @@
             </div>
 
             <div class="form-group">
-                <label for="message">Bericht:</label>
+                <label for="message">Message:</label>
                 <textarea id="message" ng-model="mapData.message" class="form-control" rows="5" required />
             </div>
             <input type="hidden" id="latitude" ng-model="mapData.lat" />
             <input type="hidden" id="longitude" ng-model="mapData.long" />
-            <button type="submit" ng-disabled="mapForm.$invalid" ng-click="addToMap()" class="btn btn-primary" >Toevoegen</button>
+            <button type="submit" ng-disabled="mapForm.$invalid" ng-click="addToMap()" class="btn btn-primary" >Add feeling</button>
         </form>
         <div ng-show="error" class="alert alert-danger">{{ error }}</div>
       
@@ -65,7 +65,7 @@
                     <div id="chatMessages" ng-model="chatData.messages"></div>
 
                     <button type="submit" style="visibility: hidden" ng-click="sendChatMessage()"  ng-disabled="chatForm.$invalid" class="btn btn-primary"></button>
-                    <input type="text" id="chatMessage" ng-model="chatData.message" placeholder="Type text here and enter" required />
+                    <input type="text" id="chatMessage" ng-model="chatData.message" placeholder="Type text here and enter" autocomplete="off" required />
                 </form>
                 </div>
             </div>
