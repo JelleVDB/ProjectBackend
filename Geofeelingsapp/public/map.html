@@ -56,6 +56,16 @@
       
       <hr>
 
+        <!-- Chatbox -->
+        <div ng-if="user.chat" >
+            <form id="chatForm" name="chatForm" novalidate>
+                <div id="chatMessages" ng-model="chatData.messages"></div>
+                <input type="text" id="chatMessage" ng-model="chatData.message" required />
+                <button type="submit" ng-click="sendChatMessage()"  ng-disabled="chatForm.$invalid" class="btn btn-primary">Send</button>
+            </form>
+
+
+        </div>
     </div>
     <div class="col-xs-9"><!--map-canvas will be postioned here--></div>
     

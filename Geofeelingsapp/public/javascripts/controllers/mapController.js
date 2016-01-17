@@ -10,6 +10,7 @@
         //Variables
 
         $scope.mapData = {};
+        $scope.chatData = {};
         var coords = {};
         var lat = 0;
         var long = 0;
@@ -94,8 +95,31 @@
                 });
         };
 
+        $scope.sendChatMessage = function(){
+            socket.emit("message", $scope.chatData.message, $scope.user);
+            $scope.chatData.message = "";
+        };
+
         socket.on("refreshMap", function(){
             loadMap($scope.mapData.lat, $scope.mapData.long);
+        });
+
+        socket.on("newMessage", function(message, sender){
+            var bobtheHTMLBouwer = "",
+                time = new Date,
+                messageBox = document.getElementById("chatMessages"),
+                hours = time.getHours(),
+                minutes = time.getMinutes();
+
+            if(minutes < 10) {
+                minutes = "0" + minutes;
+            }
+
+            bobtheHTMLBouwer += "<li>" + hours + ":" + minutes;
+            bobtheHTMLBouwer += " " + sender.username + ": " + message;
+
+
+            messageBox.innerHTML += bobtheHTMLBouwer;
         });
     };
 

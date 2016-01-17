@@ -9,5 +9,9 @@ module.exports = function(io){
         socket.on('newMapPin', function(){
            io.sockets.emit("refreshMap");
         });
+
+        socket.on('message', function(message, sender){
+            io.sockets.emit("newMessage", message, sender);
+        });
     });
 };
