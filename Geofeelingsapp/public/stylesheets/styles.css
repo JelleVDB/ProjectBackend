@@ -16,6 +16,10 @@ body {
     padding-top: 50px; /*padding for navbar*/
 }
 
+#Navb{
+    display: inline;
+}
+
 .navbar-custom .icon-bar {
     background-color: #fff;
 }
@@ -65,7 +69,7 @@ body {
 
 #searchButton {
     visibility: hidden;
-    display: none;
+    display:none;
 }
 
 #right > h2:first-child {
@@ -332,6 +336,10 @@ body {
 
 #chatMessage {
     width: 100%;
+}
+
+#chatbutton{
+    visibility: hidden;
 }
 
 .messageLI {
