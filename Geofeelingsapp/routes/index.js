@@ -72,7 +72,12 @@ module.exports = function(app, passport){
     //If the user is trying to load the map page, check if he is actually logged in
     app.get('/map', isLoggedIn, function(req, res){
         //if he is logged in, return the user details
-       return res.json(req.user);
+        EventRepo.getAllEvents(function(err, events){
+            if(err){
+                return res.json(err);
+            }
+            return res.json({user: req.user, events: events});
+        });
     });
 
     app.get('/settings', isLoggedIn, function(req, res){

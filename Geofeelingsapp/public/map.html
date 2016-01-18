@@ -21,11 +21,15 @@
                 <div class="form-group" style="display:inline;">
 
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Who are you looking for?">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span>
+                        <input type="text" list="search" id="tipue_search_input" class="form-control" placeholder="Who are you looking for?" autocomplete="off">
+                        <span class="input-group-addon" ng-click="refreshMap()"><span class="glyphicon glyphicon-search"></span> </span>
                     </div>
+                    <button id="searchButton" type="submit" ng-click="refreshMap()"></button>
                 </div>
             </form>
+            <datalist id="search">
+                <option ng-repeat="user in uniqueusers">{{user}}</option>
+            </datalist>
         </div>
     </div>
 

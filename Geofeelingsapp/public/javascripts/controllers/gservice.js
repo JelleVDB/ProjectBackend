@@ -12,6 +12,7 @@ angular.module('geofeelingsApp')
 
         // Array of locations obtained from API calls
         var locations = [];
+        var filterLocations = [];
 
         // Selected Location (initialize to Ename)
         var selectedLat = 50.8570277;
@@ -25,6 +26,8 @@ angular.module('geofeelingsApp')
 
             // Clears the holding array of locations
             locations = [];
+            filterLocations = [];
+
 
             // Set the selected lat and long equal to the ones provided on the refresh() call
             selectedLat = latitude;
@@ -47,6 +50,7 @@ angular.module('geofeelingsApp')
         // Convert a JSON of users into map points
         var convertToMapPoints = function (response) {
 
+            var userSearch = document.getElementById('tipue_search_input').value;
             // Clear the locations holder
             var locations = [];
 
@@ -81,7 +85,16 @@ angular.module('geofeelingsApp')
                 });
             }
             // location is now an array populated with records in Google Maps format
-            return locations;
+
+            for(var location in locations){
+                if(userSearch === ""){
+                    filterLocations.push(locations[location]);
+                }else if(userSearch === locations[location].username){
+                    filterLocations.push(locations[location]);
+                }
+            }
+
+            return filterLocations;
         };
 
         // Initializes the map

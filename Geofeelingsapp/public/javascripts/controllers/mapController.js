@@ -15,6 +15,8 @@
         var lat = 0;
         var long = 0;
 
+        var uniqueusers = [];
+
         //Set initial coordinates
         $scope.mapData.lat = 50.8570277;
         $scope.mapData.long = 3.6319101000000273;
@@ -33,6 +35,19 @@
 
                     cb($scope.mapData.lat, $scope.mapData.long);
                 });
+            },
+            filterUsers = function(events){
+                events.forEach(function(event){
+                    var unique = true;
+                    uniqueusers.forEach(function(user){
+                        if(event.author === user){
+                            unique = false;
+                        }
+                    });
+                    if(unique){
+                        uniqueusers.push(event.author);
+                    }
+                });
             };
 
 
@@ -44,7 +59,14 @@
                 $location.path(data.redirect);
             } else {
                 //if the user IS logged in, it will return the user's data
-                $scope.user = data;
+                $scope.user = data.user;
+                $scope.events = data.events;
+
+
+                filterUsers($scope.events);
+
+                $scope.uniqueusers = uniqueusers;
+
 
                 getGeolocation(loadMap);
             }
