@@ -8,7 +8,7 @@
     var userController = function ($scope, $http, $location, $routeParams) {
 
         var username = $routeParams.param;
-        $http.get('/user' + username ).success(function(data) {
+        $http.get('/user' + username).success(function (data) {
             $location.path(data.redirect);
             $scope.user = data.user;
             $scope.events = data.events;

@@ -8,22 +8,22 @@
     var settingController = function ($scope, $http, $location) {
 
         //Request the map page from the server
-        $http.get('/settings').success(function(data) {
+        $http.get('/settings').success(function (data) {
             //if the user is NOT logged in, it will return a redirect
-            if(data.redirect) {
+            if (data.redirect) {
                 $location.path(data.redirect);
             } else {
                 //if the user IS logged in, it will return the user's data
                 $scope.user = data;
 
-                if($scope.user.chat)
+                if ($scope.user.chat)
                     $("#chat").prop("checked", true);
                 else
                     $("#chat").prop("checked", false);
             }
         });
 
-        $scope.saveChanges = function(){
+        $scope.saveChanges = function () {
 
             //Grab all input from the register form
             var userData = {
@@ -35,18 +35,18 @@
 
             //Post the register data to the server
             $http.post('/settings', userData)
-                .success(function(data){
+                .success(function (data) {
                     //Show errors if any happend
                     $scope.settingerror = data.error;
                     $scope.info = "Settings saved.";
                 });
         };
 
-        $scope.deleteUser = function(user){
+        $scope.deleteUser = function (user) {
             alert("Nog geen code voor deleten " + user.username);
         };
 
-        $scope.logout = function() {
+        $scope.logout = function () {
             //Request the logout from the server
             $http.get('/logout').success(function (data) {
                 //Redirect to the returned location

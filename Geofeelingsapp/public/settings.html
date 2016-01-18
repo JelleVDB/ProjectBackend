@@ -27,31 +27,36 @@
             <form name="settingForm" novalidate>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" ng-model="user.username" class="form-control" readonly required />
+                    <input type="text" id="username" ng-model="user.username" class="form-control" readonly required/>
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input type="text" id="email" ng-model="user.email" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+                    <input type="text" id="email" ng-model="user.email" class="form-control"
+                           ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required/>
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <input type="text" id="age" ng-model="user.age" class="form-control" readonly required />
+                    <input type="text" id="age" ng-model="user.age" class="form-control" readonly required/>
                 </div>
                 <div class="form-group">
                     <label for="chat">Chat</label>
                     <div class="onoffswitch">
-                        <input type="checkbox" id="chat" class="onoffswitch-checkbox" ng-model="user.chat" />
+                        <input type="checkbox" id="chat" class="onoffswitch-checkbox" ng-model="user.chat"/>
                         <label class="onoffswitch-label" for="chat">
                             <span class="onoffswitch-inner"></span>
                             <span class="onoffswitch-switch"></span>
                         </label>
                     </div>
                 </div>
-                <button type="submit" ng-disabled="settingForm.$invalid" ng-click="saveChanges()" class="btn btn-primary" >Save changes</button>
+                <button type="submit" ng-disabled="settingForm.$invalid" ng-click="saveChanges()"
+                        class="btn btn-primary">Save changes
+                </button>
             </form>
             <div ng-show="info" class="alert alert-info">{{ info }}</div>
-            <hr />
-            <button id="deleteAccount" type="submit" ng-click="deleteUser(user)" data-toggle="confirmation" class="btn btn-danger" >Delete account</button>
+            <hr/>
+            <button id="deleteAccount" type="submit" ng-click="deleteUser(user)" data-toggle="confirmation"
+                    class="btn btn-danger">Delete account
+            </button>
         </div>
     </div>
 </div>

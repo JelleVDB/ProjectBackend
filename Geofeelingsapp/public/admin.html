@@ -21,77 +21,94 @@
     </div>
     <div class="container-fluid" id="main">
         <div class="row">
-            <div class="col-xs-4">
-                <h3>Delete events</h3>
-                <label>Search: <input ng-model="searchText"></label>
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>Author</th>
-                                <th>Message</th>
-                                <th>Mood</th>
-                                <th>Date added</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="event in events | filter: searchText">
-                                <td><a href="" ng-click="deleteEvent(event)"><span class="glyphicon glyphicon-trash"></span></a> {{event.author}}</td>
-                                <td>{{event.message}}</td>
-                                <td ng-if="event.mood"><img src="images/happy.png" width="50px" height="50px"></td>
-                                <td ng-if="!event.mood"><img src="images/unhappy.png" width="50px" height="50px"></td>
-                                <td>{{event.timestamp | date:'dd-MM-yyyy HH:mm'}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+            <div class="col-xs-8" id="tabpanel">
+                <ul class="nav nav-tabs" id="myTab">
+                    <li class="active"><a data-target="#Events" data-toggle="tab">Events</a></li>
+                    <li><a data-target="#Permissions" data-toggle="tab">Permissions</a></li>
+                    <li><a data-target="#Users" data-toggle="tab">Users</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="Events">
+                        <h3>Delete events</h3>
+                        <label>Search: <input ng-model="searchText"></label>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Author</th>
+                                    <th>Message</th>
+                                    <th>Mood</th>
+                                    <th>Date added</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="event in events | filter: searchText">
+                                    <td><a href="" ng-click="deleteEvent(event)"><span
+                                            class="glyphicon glyphicon-trash"></span></a> {{event.author}}
+                                    </td>
+                                    <td>{{event.message}}</td>
+                                    <td ng-if="event.mood"><img src="images/happy.png" width="50px" height="50px"></td>
+                                    <td ng-if="!event.mood"><img src="images/unhappy.png" width="50px" height="50px">
+                                    </td>
+                                    <td>{{event.timestamp | date:'dd-MM-yyyy HH:mm'}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="Permissions">
+                        <h3>Create admin</h3>
+                        <label>Search: <input ng-model="searchAdmin"></label>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Admin</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="allusers in users | filter: searchAdmin">
+                                    <td>{{allusers.username}}</td>
+                                    <td>
+                                        <div class="onoffswitch">
+                                            <input type="checkbox" ng-attr-id="{{allusers.username}}"
+                                                   class="onoffswitch-checkbox" ng-model="allusers.admin"
+                                                   ng-click="changeAdmin(allusers)"/>
+                                            <label class="onoffswitch-label" ng-attr-for="{{allusers.username}}">
+                                                <span class="onoffswitch-inner"></span>
+                                                <span class="onoffswitch-switch"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="Users">
+                        <h3>Delete users</h3>
+                        <label>Search: <input ng-model="searchUser"></label>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Author</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="user in users | filter: searchUser">
+                                    <td ng-if="!user.admin"><a href="" ng-click="deleteUser(user)"><span
+                                            class="glyphicon glyphicon-trash"></span></a> {{user.username}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            <div class="col-xs-3">
-                <h3>Create admin</h3>
-                <label>Search: <input ng-model="searchAdmin"></label>
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Admin</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="allusers in users | filter: searchAdmin">
-                            <td>{{allusers.username}}</td>
-                                <td>
-                                    <div class="onoffswitch">
-                                    <input type="checkbox" ng-attr-id="{{allusers.username}}" class="onoffswitch-checkbox" ng-model="allusers.admin" ng-click="changeAdmin(allusers)" />
-                                    <label class="onoffswitch-label" ng-attr-for="{{allusers.username}}">
-                                        <span class="onoffswitch-inner"></span>
-                                        <span class="onoffswitch-switch"></span>
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
-            <div class="col-xs-4">
-                <h3>Delete users</h3>
-                <label>Search: <input ng-model="searchUser"></label>
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Author</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="user in users | filter: searchUser">
-                            <td ng-if="!user.admin"><a href="" ng-click="deleteUser(user)"><span class="glyphicon glyphicon-trash"></span></a> {{user.username}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            </div>
-</div>
+        </div>
+    </div>
 </div>

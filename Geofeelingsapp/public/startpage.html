@@ -9,7 +9,8 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#" data-toggle="modal" data-target="#myModal">Instructions</a></li>
+                <li class="active"><a data-toggle="modal" data-target="#myModal" name="instructions">Instructions</a>
+                </li>
                 <li>&nbsp;</li>
             </ul>
         </div>
@@ -17,27 +18,30 @@
 
     <div class="container-fluid" id="main">
         <div id="cf">
-            <img class="bottom" src="images/frontimg1.jpg" />
+            <img class="bottom" src="images/frontimg1.jpg"/>
         </div>
         <div class="row">
             <div class="col-md-8" id="frontMainDiv">
                 <div class="col-md-4" id="welcomeDiv">
 
-                <h2>Welcome to Geofeelings!</h2>
-                <p>Geofeelings is a platform where you can share the you're in! Register now, Look who's nearby and make some new friends!!</p>
+                    <h2>Welcome to Geofeelings!</h2>
+                    <p>Geofeelings is a platform where you can share the you're in! Register now, Look who's nearby and
+                        make some new friends!</p>
                 </div>
                 <div class="col-md-4" id="frontLogin">
                     <div ng-show="loginerror" class="alert alert-danger">{{ loginerror }}</div>
                     <form name="loginForm" novalidate>
-                        <div class="form-group"style="display: block;">
+                        <div class="form-group" style="display: block;">
                             <label for="username">Username</label>
-                            <input type="text" ng-model="loginData.username" required class="form-control" />
+                            <input type="text" ng-model="loginData.username" required class="form-control"/>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" ng-model="loginData.password" required class="form-control" />
+                            <input type="password" ng-model="loginData.password" required class="form-control"/>
                         </div>
-                        <button type="submit" ng-disabled="loginForm.$invalid" ng-click="login()" class="btn btn-primary" >Log in</button>
+                        <button type="submit" ng-disabled="loginForm.$invalid" ng-click="login()"
+                                class="btn btn-primary">Log in
+                        </button>
                     </form>
                 </div>
                 <div class="col-md-4" id="frontRegister">
@@ -47,26 +51,32 @@
                     <form name="registerForm" novalidate>
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" id="username" ng-model="registerData.username" class="form-control" required />
+                            <input type="text" id="username" ng-model="registerData.username" class="form-control"
+                                   required/>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" id="password" ng-model="registerData.password" class="form-control" required />
+                            <input type="password" id="password" ng-model="registerData.password" class="form-control"
+                                   required/>
                         </div>
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input type="text" id="email" ng-model="registerData.email" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+                            <input type="text" id="email" ng-model="registerData.email" class="form-control"
+                                   ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required/>
                         </div>
                         <div class="form-group">
                             <label for="age">Age</label>
-                            <input type="number" id="age" ng-model="registerData.age" class="form-control" min="0" required />
+                            <input type="number" id="age" ng-model="registerData.age" class="form-control" min="0"
+                                   required/>
                         </div>
                         <div class="form-group">
-                        <label style="display: block;">Gender</label>
-                            <input type="radio" name="gender" ng-model="registerData.gender"  required value="M" />Man
-                            <input type="radio" name="gender" ng-model="registerData.gender" required value="V" />Woman
+                            <label style="display: block;">Gender</label>
+                            <input type="radio" name="gender" ng-model="registerData.gender" required value="M"/>Man
+                            <input type="radio" name="gender" ng-model="registerData.gender" required value="V"/>Woman
                         </div>
-                        <button type="submit" ng-disabled="registerForm.$invalid" ng-click="register()" class="btn btn-warning" >Register at Geofeelings</button>
+                        <button type="submit" ng-disabled="registerForm.$invalid" ng-click="register()"
+                                class="btn btn-warning">Register at Geofeelings
+                        </button>
                     </form>
                 </div>
 

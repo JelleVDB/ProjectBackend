@@ -4,7 +4,7 @@
 
 // Creates the gservice factory. This will be the primary means by which we interact with Google Maps
 angular.module('geofeelingsApp')
-    .factory('gservice', function($http){
+    .factory('gservice', function ($http) {
         // Initialize Variables
         // -------------------------------------------------------------
         // Service our factory will return
@@ -21,7 +21,7 @@ angular.module('geofeelingsApp')
         // Functions
         // --------------------------------------------------------------
         // Refresh the Map with new data. Function will take new latitude and longitude coordinates.
-        googleMapService.refresh = function(latitude, longitude){
+        googleMapService.refresh = function (latitude, longitude) {
 
             // Clears the holding array of locations
             locations = [];
@@ -31,37 +31,37 @@ angular.module('geofeelingsApp')
             selectedLong = longitude;
 
             // Perform an AJAX call to get all of the records in the db.
-            $http.get('/events').success(function(response){
+            $http.get('/events').success(function (response) {
 
                 // Convert the results into Google Map Format
                 locations = convertToMapPoints(response);
 
                 // Then initialize the map.
                 initialize(latitude, longitude, response);
-            }).error(function(){
+            }).error(function () {
             });
         };
 
         // Private Inner Functions
         // --------------------------------------------------------------
         // Convert a JSON of users into map points
-        var convertToMapPoints = function(response){
+        var convertToMapPoints = function (response) {
 
             // Clear the locations holder
             var locations = [];
 
             // Loop through all of the JSON entries provided in the response
-            for(var i= 0; i < response.length; i++) {
+            for (var i = 0; i < response.length; i++) {
                 var event = response[i];
 
                 var mood;
-                if(event.mood){
+                if (event.mood) {
                     mood = "Happy";
-                }else{
+                } else {
                     mood = "Unhappy";
                 }
                 // Create popup windows for each record
-                var  contentString =
+                var contentString =
                     '<b>Username</b>: ' +
                     "<a href='#/user/" + event.author + "'>" + event.author + "</a>" +
                     '<br><b>Mood</b>: ' + mood +
@@ -85,13 +85,13 @@ angular.module('geofeelingsApp')
         };
 
         // Initializes the map
-        var initialize = function(latitude, longitude, response) {
+        var initialize = function (latitude, longitude, response) {
 
             // Uses the selected lat, long as starting point
             var myLatLng = {lat: parseFloat(selectedLat), lng: parseFloat(selectedLong)};
 
             // If map has not been created already...
-            if (!map){
+            if (!map) {
 
                 // Create a new map and place in the index.html page
                 var map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -104,16 +104,16 @@ angular.module('geofeelingsApp')
             }
 
             // Loop through each location in the array and place a marker
-            locations.forEach(function(n, i){
+            locations.forEach(function (n, i) {
                 var marker;
-                if(response[i].mood){
+                if (response[i].mood) {
                     marker = new google.maps.Marker({
                         position: n.latlon,
                         map: map,
                         title: "Happy",
                         icon: "https://lh6.ggpht.com/GO-A_KjZDF9yJeeER2fajzO4MgqML-q2rccm27ynBlD6R-xOR3pJOb42WKfE0MNFtRsKwK4=w9-h9",
                     });
-                }else{
+                } else {
                     marker = new google.maps.Marker({
                         position: n.latlon,
                         map: map,
@@ -124,7 +124,7 @@ angular.module('geofeelingsApp')
 
 
                 // For each marker created, add a listener that checks for clicks
-                google.maps.event.addListener(marker, 'click', function(e){
+                google.maps.event.addListener(marker, 'click', function (e) {
 
                     // When clicked, open the selected marker's message
                     currentSelectedMarker = n;
@@ -147,7 +147,7 @@ angular.module('geofeelingsApp')
 
         // Refresh the page upon window load. Use the initial latitude and longitude
         /*google.maps.event.addDomListener(window, 'load',
-            googleMapService.refresh(selectedLat, selectedLong));*/
+         googleMapService.refresh(selectedLat, selectedLong));*/
 
 
         return googleMapService;

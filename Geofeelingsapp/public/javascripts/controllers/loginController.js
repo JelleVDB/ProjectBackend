@@ -5,13 +5,13 @@
 (function () {
     "use strict";
 
-    var loginController = function($scope, $http, $location) {
+    var loginController = function ($scope, $http, $location) {
 
         //Objects to store form Data
         $scope.registerData = {};
         $scope.loginData = {};
 
-        $scope.register = function(){
+        $scope.register = function () {
 
             //Grab all input from the register form
             var userData = {
@@ -24,7 +24,7 @@
 
             //Post the register data to the server
             $http.post('/register', userData)
-                .success(function(data){
+                .success(function (data) {
                     //Show errors if any happend
                     $scope.registererror = data.error;
                     //redirect if any redirects are given
@@ -32,7 +32,7 @@
                 });
         };
 
-        $scope.login = function(){
+        $scope.login = function () {
 
             //Grab data from the login form
             var loginData = {
@@ -42,7 +42,7 @@
 
             //Post the login data to the server
             $http.post('/login', loginData)
-                .success(function(data){
+                .success(function (data) {
                     //Show errors if any happend
                     $scope.loginerror = data.error;
                     //redirect if any redirects are given
