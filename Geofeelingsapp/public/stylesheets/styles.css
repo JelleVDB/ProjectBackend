@@ -548,4 +548,19 @@ body {
         margin-top: 2%;
         position: initial;
     }
+
+    .col-xs-8{
+        width:100%;
+    }
+
+    .emoticon-cc{
+        width: 125%;
+    }
+
+    h2{
+        font-size:16px;
+    }
+    .chat-box{
+        left:75%;
+    }
 }
