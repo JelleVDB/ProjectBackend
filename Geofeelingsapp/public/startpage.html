@@ -9,7 +9,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Over</a></li>
+                <li class="active"><a href="#" data-toggle="modal" data-target="#myModal">Instructions</a></li>
                 <li>&nbsp;</li>
             </ul>
         </div>
@@ -24,33 +24,33 @@
                 <div class="col-md-4" id="welcomeDiv">
 
                 <h2>Welcome to Geofeelings!</h2>
-                <p>Geofeelings is een platform waarmee je je huidige stemming kan delen met de wereld! Registreer nu, Kijk wie er actief is en maak nieuwe vrienden!</p>
+                <p>Geofeelings is a platform where you can share the you're in! Register now, Look who's nearby and make some new friends!!</p>
                 </div>
                 <div class="col-md-4" id="frontLogin">
                     <div ng-show="loginerror" class="alert alert-danger">{{ loginerror }}</div>
                     <form name="loginForm" novalidate>
-                        <div class="form-group">
-                            <label for="username" style="padding-top: 15px">Gebruikersnaam</label>
+                        <div class="form-group"style="display: block;">
+                            <label for="username">Username</label>
                             <input type="text" ng-model="loginData.username" required class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label for="password">Wachtwoord</label>
+                            <label for="password">Password</label>
                             <input type="password" ng-model="loginData.password" required class="form-control" />
                         </div>
-                        <button type="submit" ng-disabled="loginForm.$invalid" ng-click="login()" class="btn btn-primary" >Inloggen</button>
+                        <button type="submit" ng-disabled="loginForm.$invalid" ng-click="login()" class="btn btn-primary" >Log in</button>
                     </form>
                 </div>
                 <div class="col-md-4" id="frontRegister">
-                    <h4>Nieuw op geofeelings? Registreer nu</h4>
+                    <h4>New at Geofeelings? Register now!</h4>
                     <hr>
                     <div ng-show="registererror" class="alert alert-danger">{{ registererror }}</div>
                     <form name="registerForm" novalidate>
                         <div class="form-group">
-                            <label for="username">Gebruikersnaam</label>
+                            <label for="username">Username</label>
                             <input type="text" id="username" ng-model="registerData.username" class="form-control" required />
                         </div>
                         <div class="form-group">
-                            <label for="password">Wachtwoord</label>
+                            <label for="password">Password</label>
                             <input type="password" id="password" ng-model="registerData.password" class="form-control" required />
                         </div>
                         <div class="form-group">
@@ -58,16 +58,37 @@
                             <input type="text" id="email" ng-model="registerData.email" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
                         </div>
                         <div class="form-group">
-                            <label for="age">Leeftijd</label>
+                            <label for="age">Age</label>
                             <input type="number" id="age" ng-model="registerData.age" class="form-control" min="0" required />
                         </div>
                         <div class="form-group">
-                        <label style="display: block;">Geslacht</label>
+                        <label style="display: block;">Gender</label>
                             <input type="radio" name="gender" ng-model="registerData.gender"  required value="M" />Man
-                            <input type="radio" name="gender" ng-model="registerData.gender" required value="V" />Vrouw
+                            <input type="radio" name="gender" ng-model="registerData.gender" required value="V" />Woman
                         </div>
-                        <button type="submit" ng-disabled="registerForm.$invalid" ng-click="register()" class="btn btn-warning" >Registreren op Geofeelings</button>
+                        <button type="submit" ng-disabled="registerForm.$invalid" ng-click="register()" class="btn btn-warning" >Register at Geofeelings</button>
                     </form>
+                </div>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Some text in the modal.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
             </div>

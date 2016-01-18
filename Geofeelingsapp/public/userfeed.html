@@ -24,7 +24,7 @@
             <div class="page-header">
                 <h1 id="timeline">Timeline {{viewuser.username}}</h1>
             </div>
-            <ul class="timeline" ng-repeat="event in events">
+            <ul class="timeline" ng-repeat="event in events | orderBy:'timestamp':true">
                 <li ng-if="event.mood">
                     <div class="timeline-badge happy"></div>
                     <div class="timeline-panel">
