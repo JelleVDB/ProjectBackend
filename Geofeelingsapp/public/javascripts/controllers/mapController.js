@@ -36,20 +36,19 @@
                     cb($scope.mapData.lat, $scope.mapData.long);
                 });
             },
-            filterUsers = function(events){
-                events.forEach(function(event){
+            filterUsers = function (events) {
+                events.forEach(function (event) {
                     var unique = true;
-                    uniqueusers.forEach(function(user){
-                        if(event.author === user){
+                    uniqueusers.forEach(function (user) {
+                        if (event.author === user) {
                             unique = false;
                         }
                     });
-                    if(unique){
+                    if (unique) {
                         uniqueusers.push(event.author);
                     }
                 });
             };
-
 
 
         //Request the map page from the server
@@ -124,7 +123,7 @@
             socket.removeListener();
         });
 
-        $scope.refreshMap = function(){
+        $scope.refreshMap = function () {
             loadMap($scope.mapData.lat, $scope.mapData.long);
         };
 

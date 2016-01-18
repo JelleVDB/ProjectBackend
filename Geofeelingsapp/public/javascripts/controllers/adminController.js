@@ -6,8 +6,7 @@
     "use strict";
 
 
-
-        var adminController = function ($scope, $http, $location) {
+    var adminController = function ($scope, $http, $location) {
         //Request all map events
 
 
@@ -20,7 +19,7 @@
         });
 
         $scope.deleteEvent = function (event) {
-            if(confirm("Are you sure you want to delete the event?")){
+            if (confirm("Are you sure you want to delete the event?")) {
                 $http.post('/deleteevent' + event._id).success(function (data) {
                     $location.path(data.redirect);
 
@@ -38,7 +37,7 @@
         };
 
         $scope.deleteUser = function (user) {
-            if(confirm("Are you sure you want to delete the user: " + user.username)){
+            if (confirm("Are you sure you want to delete the user: " + user.username)) {
                 $http.post('/deleteuser' + user._id).success(function (data) {
                     $location.path(data.redirect);
 

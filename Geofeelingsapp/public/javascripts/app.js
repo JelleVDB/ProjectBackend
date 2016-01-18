@@ -2,12 +2,12 @@
  * Created by Jelle on 29/12/2015.
  */
 
-(function(){
+(function () {
     "use strict";
 
     var app = angular.module('geofeelingsApp', ["ngRoute"]);
 
-    var hostname = window.location.protocol + "//"+ window.location.host + "/" ;
+    var hostname = window.location.protocol + "//" + window.location.host + "/";
     var socket = io.connect(hostname);
 
     app.config(function ($routeProvider) {
@@ -26,7 +26,7 @@
         });
     });
 
-    app.factory('socket', function(){
+    app.factory('socket', function () {
         return socket;
     });
 })();

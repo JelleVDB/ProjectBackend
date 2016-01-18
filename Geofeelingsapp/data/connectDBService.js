@@ -8,7 +8,7 @@ module.exports = (function (configURL, database) {
 
     database.connection.on("open", function () {
         //mongoose test:
-        var msg = "connection met mongo server " +configURL;
+        var msg = "connection met mongo server " + configURL;
 
         //collection (=table) names met data als test (obj heeft geen lengte)
         var collections = database.connection.collections;
@@ -21,7 +21,7 @@ module.exports = (function (configURL, database) {
     });
 
     database.connection.on("error", function (error) {
-        console.log("connection error: " , error.message);
+        console.log("connection error: ", error.message);
     });
 
     database.connection.on("close", function () {

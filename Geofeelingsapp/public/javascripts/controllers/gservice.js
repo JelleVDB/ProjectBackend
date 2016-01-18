@@ -86,10 +86,10 @@ angular.module('geofeelingsApp')
             }
             // location is now an array populated with records in Google Maps format
 
-            for(var location in locations){
-                if(userSearch === ""){
+            for (var location in locations) {
+                if (userSearch === "") {
                     filterLocations.push(locations[location]);
-                }else if(userSearch === locations[location].username){
+                } else if (userSearch === locations[location].username) {
                     filterLocations.push(locations[location]);
                 }
             }

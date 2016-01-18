@@ -18,11 +18,12 @@
                 <li>&nbsp;</li>
             </ul>
             <form class="navbar-form">
-                <div class="form-group" style="display:inline;">
-
+                <div class="form-group">
                     <div class="input-group">
-                        <input type="text" list="search" id="tipue_search_input" class="form-control" placeholder="Who are you looking for?" autocomplete="off">
-                        <span class="input-group-addon" ng-click="refreshMap()"><span class="glyphicon glyphicon-search"></span> </span>
+                        <input type="text" list="search" id="tipue_search_input" class="form-control"
+                               placeholder="Who are you looking for?" autocomplete="off">
+                        <span class="input-group-addon" ng-click="refreshMap()"><span
+                                class="glyphicon glyphicon-search"></span> </span>
                     </div>
                     <button id="searchButton" type="submit" ng-click="refreshMap()"></button>
                 </div>
@@ -74,7 +75,7 @@
                         <form id="chatForm" name="chatForm" novalidate>
                             <div id="chatMessages" ng-model="chatData.messages"></div>
 
-                            <button type="submit" style="visibility: hidden" ng-click="sendChatMessage()"
+                            <button type="submit" ng-click="sendChatMessage()"
                                     ng-disabled="chatForm.$invalid" class="btn btn-primary"></button>
                             <input type="text" id="chatMessage" ng-model="chatData.message"
                                    placeholder="Type text here and enter" autocomplete="off" required/>

@@ -43,7 +43,7 @@
         };
 
         $scope.deleteUser = function (user) {
-            if(confirm("Are you sure you want to delete your account?")){
+            if (confirm("Are you sure you want to delete your account?")) {
                 $http.post('/deleteuser' + user._id).success(function (data) {
                     $location.path(data.redirect);
                 });
