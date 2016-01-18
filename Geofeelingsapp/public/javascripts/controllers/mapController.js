@@ -36,6 +36,7 @@
             };
 
 
+
         //Request the map page from the server
         $http.get('/map').success(function (data) {
             //if the user is NOT logged in, it will return a redirect
@@ -101,9 +102,14 @@
             socket.removeListener();
         });
 
+        $scope.refreshMap = function(){
+            loadMap($scope.mapData.lat, $scope.mapData.long);
+        };
+
         socket.on("refreshMap", function () {
             loadMap($scope.mapData.lat, $scope.mapData.long);
         });
+
 
         socket.on("newMessage", function (message, sender) {
             var bobtheHTMLBouwer = "",

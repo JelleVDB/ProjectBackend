@@ -23,7 +23,7 @@ EventRepo = (function(){
                     next({error: err}, null);
                 }
                 next(null, events);
-            })
+            });
         },
         deleteEvent = function(eventId, next){
             Event.find({_id:eventId}).remove().exec(function(err){
@@ -31,7 +31,7 @@ EventRepo = (function(){
                     next({error: err});
                 }
                 next(null);
-            })
+            });
         },
         getEventsByUser = function(user, next){
             Event.find({author:user.username}).exec(function(err, events){
@@ -39,7 +39,15 @@ EventRepo = (function(){
                     next({error: err}, null);
                 }
                 next(null, events);
-            })
+            });
+        },
+        deleteEventsFromUser = function(userId, next){
+            Event.find({userid:userId}).remove().exec(function(err){
+                if(err){
+                    next({error: err});
+                }
+                next(null);
+            });
         };
 
     return {
@@ -47,7 +55,8 @@ EventRepo = (function(){
         createEvent: createEvent,
         getAllEvents: getAllEvents,
         deleteEvent: deleteEvent,
-        getEventsByUser: getEventsByUser
+        getEventsByUser: getEventsByUser,
+        deleteEventsFromUser: deleteEventsFromUser
     }
 
 

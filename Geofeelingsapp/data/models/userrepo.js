@@ -58,13 +58,23 @@ UsersRepo = (function(){
         });
     };
 
+    var deleteUser = function(userId, next){
+        User.find({_id:userId}).remove().exec(function(err){
+            if(err){
+                next({error: err});
+            }
+            next(null);
+        })
+    }
+
     return {
         model: User,
         createUser: createUser,
         updateUser: updateUser,
         getAllUsers: getAllUsers,
         getUserByName: getUserByName,
-        updateAdmin: updateAdmin
+        updateAdmin: updateAdmin,
+        deleteUser: deleteUser
     };
 
 })();

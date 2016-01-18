@@ -162,6 +162,15 @@ module.exports = function(app, passport){
             })
         });
     });
+
+    app.post('/deleteuser:id', function(req, res){
+        EventRepo.deleteEventsFromUser(req.params.id, function(next){
+            userRepo.deleteUser(req.params.id, function(next){
+                res.json({redirect:'/admin'});
+            });
+        });
+
+    });
 };
 
 

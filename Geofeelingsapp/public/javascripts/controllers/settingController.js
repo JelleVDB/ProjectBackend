@@ -43,7 +43,11 @@
         };
 
         $scope.deleteUser = function (user) {
-            alert("Nog geen code voor deleten " + user.username);
+            if(confirm("Are you sure you want to delete your account?")){
+                $http.post('/deleteuser' + user._id).success(function (data) {
+                    $location.path(data.redirect);
+                });
+            }
         };
 
         $scope.logout = function () {

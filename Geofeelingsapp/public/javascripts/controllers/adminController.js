@@ -5,7 +5,9 @@
 (function () {
     "use strict";
 
-        var adminController = function ($scope, $http, $location, $route) {
+
+
+        var adminController = function ($scope, $http, $location) {
         //Request all map events
 
 
@@ -18,10 +20,14 @@
         });
 
         $scope.deleteEvent = function (event) {
-            $http.post('/deleteevent' + event._id).success(function (data) {
-                $location.path(data.redirect);
-                $route.reload();
-            });
+            if(confirm("Are you sure you want to delete the event?")){
+                $http.post('/deleteevent' + event._id).success(function (data) {
+                    $location.path(data.redirect);
+
+                    var index = $scope.events.indexOf(event);
+                    $scope.events.splice(index, 1);
+                });
+            }
         };
 
         $scope.changeAdmin = function (user) {
@@ -32,8 +38,14 @@
         };
 
         $scope.deleteUser = function (user) {
-            //TODO Delete user
-            alert("nog geen code voor deleten " + user.username);
+            if(confirm("Are you sure you want to delete the user: " + user.username)){
+                $http.post('/deleteuser' + user._id).success(function (data) {
+                    $location.path(data.redirect);
+
+                    var index = $scope.users.indexOf(user);
+                    $scope.users.splice(index, 1);
+                });
+            }
         };
 
         $scope.logout = function () {
@@ -45,5 +57,5 @@
         };
     };
 
-    angular.module('geofeelingsApp').controller('adminController', ["$scope", "$http", "$location", "$route", adminController]);
+    angular.module('geofeelingsApp').controller('adminController', ["$scope", "$http", "$location", adminController]);
 })();
