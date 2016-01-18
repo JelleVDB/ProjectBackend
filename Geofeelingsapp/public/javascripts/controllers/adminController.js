@@ -5,8 +5,10 @@
 (function () {
     "use strict";
 
-    var adminController = function ($scope, $http, $location, $route) {
+        var adminController = function ($scope, $http, $location, $route) {
         //Request all map events
+
+
         $http.get('/admin').success(function (data) {
             $scope.user = data.user;
             $location.path(data.redirect);
