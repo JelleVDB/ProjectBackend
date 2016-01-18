@@ -48,7 +48,7 @@
                 </div>
             <div class="col-xs-3">
                 <h3>Create admin</h3>
-                <label>Search: <input ng-model="searchUser"></label>
+                <label>Search: <input ng-model="searchAdmin"></label>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -58,17 +58,35 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="allusers in users | filter: searchUser">
+                        <tr ng-repeat="allusers in users | filter: searchAdmin">
                             <td>{{allusers.username}}</td>
                                 <td>
                                     <div class="onoffswitch">
-                                    <input type="checkbox" ng-attr-id="{{allusers.username}}" class="onoffswitch-checkbox" ng-model="allusers.admin" />
+                                    <input type="checkbox" ng-attr-id="{{allusers.username}}" class="onoffswitch-checkbox" ng-model="allusers.admin" ng-click="changeAdmin(allusers)" />
                                     <label class="onoffswitch-label" ng-attr-for="{{allusers.username}}">
                                         <span class="onoffswitch-inner"></span>
                                         <span class="onoffswitch-switch"></span>
                                     </label>
                                 </div>
                             </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <h3>Delete users</h3>
+                <label>Search: <input ng-model="searchUser"></label>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Author</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="user in users | filter: searchUser">
+                            <td ng-if="!user.admin"><a href="" ng-click="deleteUser(user)"><span class="glyphicon glyphicon-trash"></span></a> {{user.username}}</td>
                         </tr>
                         </tbody>
                     </table>

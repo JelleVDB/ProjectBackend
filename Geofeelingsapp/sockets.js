@@ -4,7 +4,7 @@
 
 module.exports = function(io){
     io.sockets.on('connection', function(socket){
-        console.log("sockets connected");
+        console.log("sockets.js connected");
 
         socket.on('newMapPin', function(){
            io.sockets.emit("refreshMap");

@@ -81,9 +81,12 @@ module.exports = function(app, passport){
     });
 
     app.post('/settings', function(req, res){
-        console.log(req.body);
-        userRepo.updateUser(req.body, function(next){
-            res.json({ redirect : '/settings' });
+        console.log("komt hier");
+        userRepo.updateUser(req.body, function(err, user){
+            if(err){
+                return res.json(err);
+            }
+            return res.json({});
         });
     });
 
@@ -99,12 +102,6 @@ module.exports = function(app, passport){
 
     app.get('/admin', isAdmin, function(req, res){
         //get all events
-        /*EventRepo.getAllEvents(function(err, events){
-            if(err){
-                return res.json(err);
-            }
-            res.json({ user: req.user, events : events, redirect: '/admin' });
-        });*/
 
          EventRepo.getAllEvents(function(err, events){
              userRepo.getAllUsers(function(err,users){
@@ -113,15 +110,11 @@ module.exports = function(app, passport){
                  res.json({user: req.user, events : events, users : users, redirect: '/admin' });
              });
          });
+    });
 
-        /*userRepo.getAllUsers(function(err,users)
-        {
-            if(err){
-                return res.json(err);
-            }
-            res.json({users : users, redirect: '/admin' });
-        });*/
-
+    app.post('/changeAdmin', isAdmin, function(req, res){
+        userRepo.updateAdmin(req.body, function(next){
+        });
     });
 
     app.post('/event', function(req, res){

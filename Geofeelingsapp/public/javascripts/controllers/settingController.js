@@ -5,7 +5,7 @@
 (function () {
     "use strict";
 
-    var settingController = function ($scope, $http, $location, $route) {
+    var settingController = function ($scope, $http, $location) {
 
         //Request the map page from the server
         $http.get('/settings').success(function(data) {
@@ -33,19 +33,17 @@
                 chat: $scope.user.chat
             };
 
-            if(userData.chat === undefined)
-                userData.chat = false;
-            else
-                userData.chat = true;
-
             //Post the register data to the server
             $http.post('/settings', userData)
                 .success(function(data){
                     //Show errors if any happend
                     $scope.settingerror = data.error;
-                    //redirect if any redirects are given
-                    $location.path(data.redirect);
+                    $scope.info = "Settings saved.";
                 });
+        };
+
+        $scope.deleteUser = function(user){
+            alert("Nog geen code voor deleten " + user.username);
         };
 
         $scope.logout = function() {
@@ -58,5 +56,5 @@
 
     };
 
-    angular.module('geofeelingsApp').controller('settingController', ["$scope", "$http", "$location", "$route", settingController]);
+    angular.module('geofeelingsApp').controller('settingController', ["$scope", "$http", "$location", settingController]);
 })();

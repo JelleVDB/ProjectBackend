@@ -26,6 +26,7 @@ UsersRepo = (function(){
             if (err) {
                 console.log('got an error');
             }
+            next(null, doc);
         });
     };
 
@@ -45,12 +46,25 @@ UsersRepo = (function(){
         });
     };
 
+    var updateAdmin = function(user, next){
+        var query = { _id: user.id};
+        var update = {admin: user.admin};
+        var options = {new: true};
+
+        User.findOneAndUpdate(query, update, options, function (err, doc){
+            if (err) {
+                console.log('got an error');
+            }
+        });
+    };
+
     return {
         model: User,
         createUser: createUser,
         updateUser: updateUser,
         getAllUsers: getAllUsers,
-        getUserByName: getUserByName
+        getUserByName: getUserByName,
+        updateAdmin: updateAdmin
     };
 
 })();

@@ -13,14 +13,32 @@
             $scope.events = data.events;
             $scope.users = data.users;
 
-            console.log($scope.users);
         });
 
         $scope.deleteEvent = function(event){
             $http.post('/deleteevent'+ event._id).success(function(data){
                 $location.path(data.redirect);
                 $route.reload();
+            });
+        };
 
+        $scope.changeAdmin = function(user){
+            user.id = user._id;
+            $http.post('/changeAdmin', user).success(function(data){
+
+            });
+        };
+
+        $scope.deleteUser = function(user){
+            //TODO Delete user
+            alert("nog geen code voor deleten " + user.username);
+        };
+
+        $scope.logout = function() {
+            //Request the logout from the server
+            $http.get('/logout').success(function (data) {
+                //Redirect to the returned location
+                $location.path(data.redirect);
             });
         };
     };

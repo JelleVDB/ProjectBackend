@@ -49,6 +49,9 @@
                 </div>
                 <button type="submit" ng-disabled="settingForm.$invalid" ng-click="saveChanges()" class="btn btn-primary" >Save changes</button>
             </form>
+            <div ng-show="info" class="alert alert-info">{{ info }}</div>
+            <hr />
+            <button id="deleteAccount" type="submit" ng-click="deleteUser(user)" data-toggle="confirmation" class="btn btn-danger" >Delete account</button>
         </div>
     </div>
 </div>

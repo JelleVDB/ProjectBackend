@@ -5,7 +5,7 @@
 (function () {
     "use strict";
 
-    var mapController = function ($scope, $http, $location, geolocation, gservice) {
+    var mapController = function ($scope, $http, $location, geolocation, gservice, socket) {
 
         //Variables
 
@@ -18,10 +18,6 @@
         //Set initial coordinates
         $scope.mapData.lat = 50.8570277;
         $scope.mapData.long = 3.6319101000000273;
-
-        //var socket = io.connect('http://localhost:1337');
-        var hostname = window.location.protocol + "//"+ window.location.host + "/" ;
-        var socket = io.connect(hostname);
 
         var loadMap = function(lat, long){
                 gservice.refresh(lat, long);
@@ -88,6 +84,7 @@
 
                     //leegmaken van form
                     $scope.mapData.message = "";
+                    $scope.mapData.mood = "";
 
 
                     //gservice.refresh(parseFloat($scope.mapData.lat), parseFloat($scope.mapData.long));
@@ -99,6 +96,10 @@
             socket.emit("message", $scope.chatData.message, $scope.user);
             $scope.chatData.message = "";
         };
+
+        $scope.$on('$destroy', function() {
+            socket.removeListener();
+        });
 
         socket.on("refreshMap", function(){
             loadMap($scope.mapData.lat, $scope.mapData.long);
@@ -121,7 +122,8 @@
 
             messageBox.innerHTML += bobtheHTMLBouwer;
         });
+
     };
 
-    angular.module('geofeelingsApp').controller('mapController', ["$scope", "$http", "$location", "geolocation", "gservice", mapController]);
+    angular.module('geofeelingsApp').controller('mapController', ["$scope", "$http", "$location", "geolocation", "gservice", "socket", mapController]);
 })();

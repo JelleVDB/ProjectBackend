@@ -7,6 +7,9 @@
 
     var app = angular.module('geofeelingsApp', ["ngRoute"]);
 
+    var hostname = window.location.protocol + "//"+ window.location.host + "/" ;
+    var socket = io.connect(hostname);
+
     app.config(function ($routeProvider) {
         $routeProvider.when("/startpage", {
             templateUrl: "../startpage.html"
@@ -21,5 +24,9 @@
         }).otherwise({
             redirectTo: "/map"
         });
+    });
+
+    app.factory('socket', function(){
+        return socket;
     });
 })();
