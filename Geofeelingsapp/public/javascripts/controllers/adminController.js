@@ -20,7 +20,6 @@
             if (confirm("Are you sure you want to delete the event?")) {
                 $http.post('/deleteevent' + event._id).success(function (data) {
                     $location.path(data.redirect);
-
                     var index = $scope.events.indexOf(event);
                     $scope.events.splice(index, 1);
                 });

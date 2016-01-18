@@ -8,20 +8,20 @@ var bcrypt = require('bcrypt');
 
 var salt = bcrypt.genSaltSync(8);
 
-userSchema.methods.generateHash = function(password, cb){
-    bcrypt.hash(password, salt, function(err, hash) {
-        if(err){
+userSchema.methods.generateHash = function (password, cb) {
+    bcrypt.hash(password, salt, function (err, hash) {
+        if (err) {
             return cb(err);
         }
         return cb(err, hash);
     });
 };
 
-userSchema.methods.validPassword = function(password, cb){
-    bcrypt.compare(password, this.password, function(err, isMatch){
-       if(err){
-           return cb(err);
-       }
+userSchema.methods.validPassword = function (password, cb) {
+    bcrypt.compare(password, this.password, function (err, isMatch) {
+        if (err) {
+            return cb(err);
+        }
         return cb(null, isMatch);
 
     });

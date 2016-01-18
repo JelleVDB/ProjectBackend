@@ -40,14 +40,14 @@ var UserSchema = mongoose.Schema({
     }
 });
 
-UserSchema.pre('save', function(next) {
-    if(!this.timestamp){
+UserSchema.pre('save', function (next) {
+    if (!this.timestamp) {
         this.timestamp = new Date();
     }
-    if(!this.chat){
+    if (!this.chat) {
         this.chat = true;
     }
-    if(!this.admin){
+    if (!this.admin) {
         this.admin = false;
     }
 

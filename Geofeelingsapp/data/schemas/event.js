@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 
 var EventSchema = mongoose.Schema({
     userid: {
-        type: Schema.Types.ObjectId, ref:'User'
+        type: Schema.Types.ObjectId, ref: 'User'
     },
     author: {
         type: String
