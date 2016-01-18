@@ -15,7 +15,7 @@
             $scope.viewuser = data.viewuser;
         });
 
-        $scope.logout = function() {
+        $scope.logout = function () {
             //Request the logout from the server
             $http.get('/logout').success(function (data) {
                 //Redirect to the returned location

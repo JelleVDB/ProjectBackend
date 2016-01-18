@@ -36,20 +36,19 @@
                     cb($scope.mapData.lat, $scope.mapData.long);
                 });
             },
-            filterUsers = function(events){
-                events.forEach(function(event){
+            filterUsers = function (events) {
+                events.forEach(function (event) {
                     var unique = true;
-                    uniqueusers.forEach(function(user){
-                        if(event.author === user){
+                    uniqueusers.forEach(function (user) {
+                        if (event.author === user) {
                             unique = false;
                         }
                     });
-                    if(unique){
+                    if (unique) {
                         uniqueusers.push(event.author);
                     }
                 });
             };
-
 
 
         //Request the map page from the server
@@ -66,7 +65,6 @@
                 filterUsers($scope.events);
 
                 $scope.uniqueusers = uniqueusers;
-
 
                 getGeolocation(loadMap);
             }
@@ -124,7 +122,7 @@
             socket.removeListener();
         });
 
-        $scope.refreshMap = function(){
+        $scope.refreshMap = function () {
             loadMap($scope.mapData.lat, $scope.mapData.long);
         };
 
@@ -135,7 +133,7 @@
 
         socket.on("newMessage", function (message, sender) {
             var bobtheHTMLBouwer = "",
-                time = new Date,
+                time = new Date(),
                 messageBox = document.getElementById("chatMessages"),
                 hours = time.getHours(),
                 minutes = time.getMinutes();

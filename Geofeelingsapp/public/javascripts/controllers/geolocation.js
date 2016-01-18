@@ -1,4 +1,3 @@
-'use strict';
 
 angular.module('geofeelingsApp').constant('geolocation_msgs', {
     'errors.location.unsupportedBrowser': 'Browser does not support location services',
