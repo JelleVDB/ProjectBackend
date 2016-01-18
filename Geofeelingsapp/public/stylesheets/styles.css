@@ -194,6 +194,29 @@ body {
     margin: 0 0 15px 0;
 }
 
+.timelineIMG{
+    width:99.8%;
+}
+
+.modal-body h4{
+    color: #168CCC;
+}
+
+.modal-body h3{
+    color: #168CCC;
+    margin-top:0px;
+}
+
+.modal-footer{
+    padding: 5px 5px 5px;
+}
+
+.modal-footer .btn {
+    margin: 0;
+}
+
+
+
 /* Settings page */
 
 .onoffswitch {
