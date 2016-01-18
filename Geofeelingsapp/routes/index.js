@@ -93,10 +93,16 @@ module.exports = function(app, passport){
     //If the user wants to logout
     app.get('/logout', function(req, res){
         //logout the user
-        req.logout();
+        //req.logout();
+        //req.session.destroy();
+
+        req.session.destroy(function() {
+            res.clearCookie('connect.sid');
+            res.json({ redirect : '/startpage' });
+        });
 
         //redirect the user to the login/register page
-        res.json({ redirect : '/startpage' });
+        //res.json({ redirect : '/startpage' });
     });
 
 
