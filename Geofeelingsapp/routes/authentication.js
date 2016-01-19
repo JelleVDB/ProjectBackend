@@ -73,4 +73,4 @@ module.exports = function (app, passport) {
         //res.json({ redirect : '/startpage' });
     });
 
-}
+};
