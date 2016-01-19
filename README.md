@@ -8,5 +8,22 @@ door Sam Bauters & Jelle Vanden Bulcke
 1. Clone git project
 2. Install npm packages
 
-## App on Heroku
+## Project Information
+### App on Heroku
 https://geofeelingsbackend.herokuapp.com/
+
+ * Admin Login:
+
+ -Username: docent@nmct.be
+
+ -Password: docent1@nmct.be
+ 
+ 
+### MongoDB database
+ https://mongolab.com/login/
+ 
+ * Login:
+
+ -Username: JelleVDB
+
+ -Password: abc123
